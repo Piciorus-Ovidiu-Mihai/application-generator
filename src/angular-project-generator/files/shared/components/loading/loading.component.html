@@ -1,0 +1,12 @@
+<div *ngIf="isLoading && type === 'spinner'" class="spinner-container">
+  <div class="spinner">
+    <div
+      class="spinner-inner"
+      [style.border-bottom-color]="color"
+      [style.border-left-color]="color"
+      [style.border-right-color]="color"
+    ></div>
+  </div>
+</div>
+
+<div class="loading-indicator" *ngIf="isLoading && type === 'loader'"></div>

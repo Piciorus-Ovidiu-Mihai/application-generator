@@ -1,0 +1,43 @@
+.directives-list-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+
+  .highlight-directives-list {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    button{
+      width: 20%;
+      border-radius: 10px;
+      border-color: white;
+      box-shadow: none;
+      background-color: aliceblue;
+    }
+  }
+
+  .confirm-directives-list{
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    button{
+      width: 20%;
+      border-radius: 10px;
+      border-color: white;
+      box-shadow: none;
+      background-color: aliceblue;
+    }
+  }
+}

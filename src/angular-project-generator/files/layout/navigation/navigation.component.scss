@@ -1,0 +1,119 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--app-secondary);
+  color: #fff;
+
+  a {
+    text-decoration: none;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #fff;
+  }
+
+  .menu {
+    display: flex;
+    z-index: 2;
+    gap: 1em;
+    font-size: 18px;
+  }
+
+  .menu li:hover {
+    background-color: var(--app-primary);
+    border-radius: 5px;
+    transition: 0.3s ease;
+  }
+
+  .menu li {
+    padding: 5px 14px;
+  }
+
+  .services {
+    position: relative;
+  }
+
+  .dropdown {
+    background-color: var(--app-primary);
+    padding: 1em 0;
+    position: absolute;
+    display: none;
+    border-radius: 8px;
+    top: 35px;
+  }
+
+  .dropdown li + li {
+    margin-top: 10px;
+  }
+
+  .dropdown li {
+    padding: 0.5em 1em;
+    width: 8em;
+    text-align: center;
+  }
+
+  .dropdown li:hover {
+    background-color: var(--app-primary);
+  }
+
+  .services:hover .dropdown {
+    display: block;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    user-select: none;
+  }
+
+  .developer-name {
+    font-family: "Great Vibes";
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    .menu {
+      display: none;
+      position: absolute;
+      background-color: var(--app-primary);
+      right: 0;
+      left: 0;
+      text-align: center;
+      padding: 16px 0;
+    }
+    .menu li:hover {
+      display: inline-block;
+      background-color: var(--app-primary);
+      transition: 0.3s ease;
+    }
+    .menu li + li {
+      margin-top: 12px;
+    }
+    input[type="checkbox"]:checked ~ .menu {
+      display: block;
+    }
+    .hamburger {
+      display: block;
+    }
+    .dropdown {
+      left: 50%;
+      top: 30px;
+      transform: translateX(35%);
+    }
+    .dropdown li:hover {
+      background-color: #4c9e9e;
+    }
+  }
+}

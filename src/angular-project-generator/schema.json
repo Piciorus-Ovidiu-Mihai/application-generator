@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "NgNewSchema",
+    "title": "Angular project generator",
+    "type": "object",
+    "description": "Generate your angular project",
+    "properties": {
+      "name": {
+        "type": "string",
+        "x-prompt": "Type the name of your angular application."
+      },
+      "service": {
+        "type": "string",
+        "enum": ["firebase-base-service", "base-serivce", "both"],
+        "x-prompt": "For the http requests what base service do you want to use?"
+      },
+      "sharedComponents": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want shared components?"
+      },
+      "sharedPipes": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want shared pipes?"
+      },
+      "sharedDirectives": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want shared directives?"
+      },
+      "authModule": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want authentication module?"
+      },
+      "interceptors": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want generic interceptors?"
+      },
+      "guards": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want generic guards?"
+      },
+      "dashboard": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want navigation dashboard page?"
+      },
+      "aboutUs": {
+        "type": "string",
+        "enum": ["Yes", "No"],
+        "x-prompt": "Do you want about us page?"
+      }
+    },
+    "required": ["name", "service", "sharedComponents", "sharedPipes", "sharedDirectives", "authModule", "interceptors", "guards", "dashboard", "aboutUs"]
+  }
+  

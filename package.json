@@ -1,0 +1,27 @@
+{
+  "name": "application-generator",
+  "version": "0.0.0",
+  "description": "A blank schematics",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^15.2.7",
+    "@angular-devkit/schematics": "^15.2.7",
+    "simple-git": "^3.19.0",
+    "typescript": "~4.9.3"
+  },
+  "devDependencies": {
+    "@schematics/angular": "^16.1.1",
+    "@types/jasmine": "~4.3.0",
+    "@types/node": "^14.15.0",
+    "jasmine": "^4.0.0"
+  }
+}

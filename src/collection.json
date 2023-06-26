@@ -1,0 +1,23 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "application-generator": {
+      "description": "A blank schematic.",
+      "factory": "./application-generator/index#applicationGenerator"
+    },
+    "back-end-architecture": {
+      "description": "Clone the template for the back-end project",
+      "factory": "./back-end-architecture/index#backEndArchitecture",
+      "schema": "./back-end-architecture/schema.json"
+    },
+    "angular-project-generator": {
+      "description": "A blank schematic.",
+      "factory": "./angular-project-generator/index#angularProjectGenerator",
+      "schema": "./angular-project-generator/schema.json"
+    },
+    "ionic-project-generator": {
+      "description": "A blank schematic.",
+      "factory": "./ionic-project-generator/index#ionicProjectGenerator"
+    }
+  }
+}

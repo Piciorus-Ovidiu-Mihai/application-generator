@@ -1,0 +1,35 @@
+.components-container{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.inputs-container{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: 30%;
+}
+
+.loading-container{
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  align-content: center;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+}
+
+.angular-components-list{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+
+  .list-container{
+    display: flex;
+    flex-direction: column;
+  }
+}

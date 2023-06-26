@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "NgNewSchema",
+    "title": "Back-end Architecture",
+    "type": "object",
+    "description": "Choose the back-end architecture",
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": ["clean-architecture", "three-tier-architecture"],
+        "x-prompt": "What architecture you want to use?"
+      }
+    },
+    "required": ["type"]
+  }
+  

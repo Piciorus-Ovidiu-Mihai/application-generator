@@ -1,0 +1,31 @@
+.about-us-container {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  background-color: var(--ion-color-primary);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  padding: 40px;
+  flex-direction: column;
+}
+
+.cards {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap:20px;
+
+  .card{
+    height: 70%;
+    width: 22%;
+    border-radius: 20px;
+  }
+}
+
