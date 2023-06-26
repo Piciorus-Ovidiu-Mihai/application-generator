@@ -80,13 +80,13 @@ function addSharedComonents(_options: any): Rule {
     const moveToPath = `${_options.name}/src`;
     if (_options.sharedComponents === "No") return tree;
 
-    const sourceTemplate = url("./files/shared/pipes");
+    const sourceTemplate = url("./files/shared/components");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/shared/pipes`),
+      move(`${moveToPath}/shared/components`),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;

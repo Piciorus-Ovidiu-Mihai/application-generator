@@ -17,7 +17,8 @@
     },
     "ionic-project-generator": {
       "description": "A blank schematic.",
-      "factory": "./ionic-project-generator/index#ionicProjectGenerator"
+      "factory": "./ionic-project-generator/index#ionicProjectGenerator",
+      "schema": "./ionic-project-generator/schema.json"
     }
   }
 }

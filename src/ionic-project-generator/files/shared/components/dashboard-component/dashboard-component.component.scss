@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: start;
+  flex-direction: column;
+  overflow: auto;
+  align-items: center;
+  background-color: transparent;
+
+  .cards-list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .text-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .card-icon {
+      background-color: var(--ion-color-primary);
+      width: 60px;
+      height: 68px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 60px;
+
+      ion-icon{
+        align-self: center;
+        color: var(--ion-color-secondary);
+      }
+    }
+
+    .card {
+      justify-content: space-between;
+      width: 24%;
+      height: 44%;
+      border-radius: 12px;
+      border: 1px solid var(--ion-color-primary-contrast);
+      background-image: none;
+      box-shadow: 5px 5px 30px 0 var(--app-primary-contrast);
+      text-align: left;
+      color: var(--app-dark);
+      background-color: var(--ion-color-primary-contrast);
+      border-radius: 30px;
+      display: flex;
+      position: relative;
+      pointer-events: initial;
+      flex-direction: column;
+      padding: 20px;
+
+      &:hover{
+        background-color: var(--ion-color-primary);
+        cursor: pointer;
+      }
+    }
+  }
+}

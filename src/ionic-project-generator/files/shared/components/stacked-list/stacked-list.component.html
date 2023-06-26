@@ -1,0 +1,126 @@
+<ng-container>
+  <ion-list style="flex: 1 1 auto">
+    <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+    <ion-item *ngIf="!items || items?.length === 0">
+      <ion-label>
+        <ion-text color="medium">
+          <i style="font-size: 0.8rem">No Items</i>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item
+      *ngFor="let item of items; trackBy: trackByFn"
+      [button]="clickable"
+      mode="md"
+      (click)="clickable && itemClick(item)"
+      class="transition"
+      [ngClass]="{ selected: clickable && isSelected(item) }"
+      [routerLink]="
+        clickable && listItems?.routerUrl
+          ? getLink(item, listItems.routerUrl)
+          : null
+      "
+      [routerDirection]="listItems?.routerDirection ?? 'forward'"
+      [disabled]="isDisabled(item, listItems)"
+    >
+      <ion-text
+        slot="start"
+        color="secondary"
+        (click)="check(item, $event)"
+        *ngIf="selectable"
+      >
+        <ion-icon
+          [icon]="'checkbox-outline'"
+          size="lg"
+          *ngIf="isChecked(item)"
+        ></ion-icon>
+        <ion-icon
+          [icon]="'square-outline'"
+          size="lg"
+          *ngIf="!isChecked(item)"
+        ></ion-icon>
+      </ion-text>
+      <!-- this is used in Classifact -->
+      <!-- <ion-thumbnail *ngIf="listItems?.image && item[listItems.image]">
+        <img [src]="item['id'] | getStateImg | async" />
+      </ion-thumbnail> -->
+
+      <!-- use this
+      <ion-avatar *ngIf="listItems?.avatar" slot="start">
+        <img
+          [src]="
+            item | displayAvatar : listItems | sanitizeImage : 'base64string'
+          "
+          *ngIf="listItems?.avatar"
+        />
+      </ion-avatar> -->
+
+      <ion-label>
+        <ion-text
+          *ngFor="let field of fields; first as first; index as i"
+          [color]="first ? 'primary' : 'dark'"
+        >
+          <h5 *ngIf="first">
+            <ng-container
+              *ngTemplateOutlet="
+                displayLabel;
+                context: { item, field: fields[i] }
+              "
+            ></ng-container>
+          </h5>
+
+          <p *ngIf="!first" style="font-size: 0.8rem">
+            <ng-container
+              *ngTemplateOutlet="
+                displayLabel;
+                context: { item, field: fields[i] }
+              "
+            ></ng-container>
+          </p>
+        </ion-text>
+      </ion-label>
+      <ion-label slot="end" *ngIf="listItems?.endIcons?.length > 0">
+        <ng-container *ngFor="let icon of listItems.endIcons">
+          <ion-text color="medium">
+            <ion-icon
+              *ngIf="item | displayListIcon : icon as dispIcon"
+              [icon]="dispIcon"
+              style="margin: 6px"
+            ></ion-icon>
+          </ion-text>
+        </ng-container>
+      </ion-label>
+      <ion-label slot="end" *ngIf="listItems?.icons?.length > 0">
+        <ng-container *ngFor="let icon of listItems.icons">
+          <ion-text [color]="item | displayListIcon : icon?.color || 'medium'">
+            <ion-icon
+              *ngIf="item | displayListIcon : icon.icon as iconName"
+              [icon]="iconName"
+              [size]="icon.size || 'lg'"
+              style="margin: 6px"
+            ></ion-icon>
+          </ion-text>
+        </ng-container>
+      </ion-label>
+      <ion-label slot="end" *ngIf="isSelected(item)" color="primary">
+        <ion-icon [icon]="'arrow-forward-outline'"></ion-icon>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #displayLabel let-item="item" let-field="field">
+    <ion-icon
+      *ngIf="field?.icon"
+      [icon]="field?.icon"
+      [style.padding-right]="'.7rem'"
+    ></ion-icon>
+    <ng-container [ngSwitch]="field.pipe">
+      <span *ngSwitchCase="'date'">
+        {{
+          item | displayProp : field | translocoDate : { dateStyle: 'medium' }
+        }}
+      </span>
+      <span *ngSwitchDefault>{{ item | displayProp : field }}</span>
+    </ng-container>
+  </ng-template>
+</ng-container>

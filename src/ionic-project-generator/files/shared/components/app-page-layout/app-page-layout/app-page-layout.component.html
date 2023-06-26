@@ -1,0 +1,179 @@
+<ng-container>
+  <ion-header
+    *ngIf="{
+      isSmall: isSmall$ | async
+    } as context"
+    class="ion-no-border"
+    style="z-index: 500"
+  >
+    <ion-toolbar
+      class="primary-toolbar ion-text-center"
+      color="primary"
+      mode="ios"
+    >
+      <ion-menu-toggle *ngIf="context.isSmall" slot="start">
+        <ion-button>
+          <ion-icon
+            slot="icon-only"
+            [icon]="'menu-outline'"
+            size="lg"
+          ></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+      <ion-text
+        *ngIf="parentTitle && parentUri; else onlyTitle"
+        slot="start"
+        style="transform: translateY(-2px)"
+      >
+        <a [routerLink]="parentUri" routerDirection="back" class="title-font">
+          {{ parentTitle }}
+        </a>
+        <ion-icon
+          size="sm"
+          style="margin: 0 8px"
+          name="arrow-forward-outline"
+        ></ion-icon>
+        <span class="title-font">{{ title }}</span>
+      </ion-text>
+      <ng-template #onlyTitle>
+        <ion-text slot="start" style="transform: translateY(-2px)">
+          <span class="title-font">
+            {{ title }}
+          </span>
+        </ion-text>
+        <img
+          *ngIf="logo"
+          [src]="logo"
+          style="max-height: 64px; padding: 12px"
+        />
+      </ng-template>
+
+      <ng-content select="[slot=toolbar-center]"></ng-content>
+
+      <ion-text
+        class="clock ion-hide-sm-down"
+        slot="end"
+        *subscribe="currentDateTime$ as dateTime"
+      >
+        <!-- <span class="date ion-hide-md-up">
+          {{ dateTime | date : "medium" }}
+        </span> -->
+        <!-- <span class="date ion-hide-lg-up ion-hide-md-down">
+          {{ dateTime | date : "long" }}
+        </span> -->
+        <span class="date ion-hide-lg-down">
+          {{ dateTime | date : "medium" }}
+        </span>
+        <!-- <span class="divider">|</span> -->
+        <!-- <span class="time">
+          {{ dateTime | date : "short" }}
+        </span> -->
+      </ion-text>
+
+      <ion-buttons slot="end" style="display: flex; gap: 6px">
+        <ion-button
+          *ngFor="let button of buttons"
+          (click)="button.action()"
+          class="toolbar-button"
+        >
+          <ion-icon [name]="button.icon" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar class="secondary-toolbar" *ngIf="tabs?.length > 0" mode="ios">
+      <ion-segment
+        mode="md"
+        [style.max-width]="
+          'calc(' +
+          (tabs.length + (displayHome ? 1 : 0)) +
+          '* ' +
+          tabMaxWidth +
+          ')'
+        "
+        [scrollable]="true"
+        [(ngModel)]="selectedPath"
+      >
+        <ion-segment-button
+          [routerLink]="rootPath + '/home'"
+          value="home"
+          class="transition"
+          *ngIf="displayHome"
+        >
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button
+          *ngFor="let tab of tabs"
+          class="transition"
+          [routerLink]="rootPath + '/' + tab.path"
+          [value]="tab.path"
+        >
+          {{ tab.name }}
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+    <ion-toolbar mode="ios" color="primary" *ngIf="displaySearch">
+      <ion-searchbar
+        [placeholder]="searchPlaceholder || 'Search'"
+        [debounce]="searchDebounce"
+        (ionChange)="search($event)"
+        [value]="params?.['q']"
+      ></ion-searchbar>
+      <ion-buttons slot="end" style="display: flex; gap: 8px">
+        <ion-button
+          fill="solid"
+          class="filter-btn"
+          *ngIf="displayFilter"
+          (click)="filter()"
+        >
+          <ion-icon slot="icon-only" size="lg" name="filter-outline"></ion-icon>
+          <ion-badge
+            *ngIf="(params | propertyCount : ignoreProps) > 0"
+            color="secondary"
+          >
+            {{ params | propertyCount : ignoreProps }}
+          </ion-badge>
+        </ion-button>
+        <ion-button
+          fill="solid"
+          *ngIf="buttonType !== 'none'"
+          [id]="buttonType === 'menu' ? 'listSearchMenu' : 'btnSearch'"
+          (click)="buttonClick()"
+        >
+          <ion-icon
+            [icon]="
+              buttonType === 'menu' ? 'ellipsis-vertical-outline' : buttonIcon
+            "
+            size="lg"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content
+    scrollY="false"
+    [style.height]="
+      tabs?.length > 0
+        ? 'calc(100vh - 120px - env(safe-area-inset-top))'
+        : displaySearch
+        ? 'calc(100vh - 96px - env(safe-area-inset-top))'
+        : 'calc(100vh - 44px - env(safe-area-inset-top))'
+    "
+  >
+    <ng-content></ng-content>
+  </ion-content>
+
+  <ion-popover
+    *ngIf="buttonType === 'menu'"
+    trigger="listSearchMenu"
+    triggerAction="click"
+    [dismissOnSelect]="true"
+  >
+    <ng-template>
+      <ion-content class="ion-background-overlay">
+        <ng-content select="[slot=menu]"></ng-content>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</ng-container>
