@@ -1,0 +1,25 @@
+:root {
+  --border-radius-size: 7px;
+  --ion-padding: 24px;
+  --ion-margin: 16px;
+}
+
+.bg-transparent {
+  --background: transparent !important;
+  background: transparent !important;
+}
+
+.color-primary-contrast {
+  --color: var(--ion-color-primary-contrast);
+  color: var(--ion-color-primary-contrast);
+}
+
+a {
+  text-decoration: none;
+}
+
+.overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

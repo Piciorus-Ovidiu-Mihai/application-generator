@@ -1,0 +1,74 @@
+<ion-grid
+  [style.--ion-grid-padding]="gridPadding + 'px'"
+  [style.--ion-grid-column-padding]="gridColumnPadding + 'px'"
+>
+  <ion-row *ngFor="let row of rows">
+    <ion-col size="6">
+      <ion-text color="dark" *ngIf="row.key">
+        <b>{{ row.key }}:</b>
+      </ion-text>
+    </ion-col>
+    <ion-col size="6">
+      <ng-container *ngIf="!row.template">
+        <ng-container [ngSwitch]="row.valueType">
+          <ion-text *ngSwitchCase="'phone'">
+            <a [href]="'tel:' + row.value" target="_blank">
+              {{ row.value ?? noValuePlaceholder }}
+            </a>
+          </ion-text>
+          <ion-text *ngSwitchCase="'email'">
+            <a [href]="'mailto:' + row.value" target="_blank">
+              {{ row.value ?? noValuePlaceholder }}
+            </a>
+          </ion-text>
+          <!-- <ion-text *ngSwitchCase="'internal_route'">
+            <a [routerLink]="row.route" [routerDirection]="'forward'">
+              {{ row.value ?? noValuePlaceholder }}
+            </a>
+          </ion-text> -->
+          <ion-text *ngSwitchCase="'date_time'" color="dark">
+            {{
+              row.value
+                | translocoDate : { dateStyle: 'medium', timeStyle: 'short' }
+            }}
+          </ion-text>
+          <ion-text *ngSwitchCase="'date'" color="dark">
+            {{ row.value | translocoDate : { dateStyle: 'medium' } }}
+          </ion-text>
+          <ion-text *ngSwitchCase="'currency'" color="dark">
+            €
+            {{
+              row.value
+                | translocoDecimal
+                  : { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+            }}
+          </ion-text>
+          <ion-text
+            *ngSwitchCase="'boolean'"
+            [color]="row.value ? 'success' : 'danger'"
+          >
+            <ion-icon
+              *ngIf="row.value"
+              [icon]="'checkbox-outline'"
+              size="lg"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="!row.value"
+              [icon]="'square-outline'"
+              size="lg"
+            ></ion-icon>
+          </ion-text>
+          <ion-text color="dark" *ngSwitchDefault>
+            {{ row.value ?? noValuePlaceholder }}
+          </ion-text>
+        </ng-container>
+      </ng-container>
+      <ng-template
+        *ngIf="row.template"
+        [ngTemplateOutlet]="row.template"
+        [ngTemplateOutletContext]="{ value: row.value }"
+      >
+      </ng-template>
+    </ion-col>
+  </ion-row>
+</ion-grid>

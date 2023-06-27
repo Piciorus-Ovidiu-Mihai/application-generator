@@ -1,0 +1,8 @@
+<app-app-layout
+  [organizationName]="'APG'"
+  [menuItems]="menuItems$ | async"
+  [menuWhen]="'md'"
+  logo="./assets/icon/favicon.png"
+>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</app-app-layout>

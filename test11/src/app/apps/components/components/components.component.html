@@ -1,0 +1,38 @@
+<div class="components-container">
+  <ion-label>Datails Card</ion-label>
+  <div class="details-layout">
+    <app-details-card-layout
+      *ngIf="details"
+      [title]="'Details'"
+      [displayMenu]="true"
+      [displayDelete]="true"
+      [headerTextColor]="'dark'"
+      [displayEdit]="true"
+      iconName="people-outline"
+      style="flex: 1 0 0; display: flex; flex-direction: column"
+      headerTextColor="dark"
+    >
+      <app-details-table [rows]="detailsRows"></app-details-table>
+    </app-details-card-layout>
+  </div>
+
+  <ion-label style="margin-top:60px;">List</ion-label>
+  <div class="list-container">
+    <app-stacked-list
+      [items]="items"
+      [listItems]="fields"
+      (itemClicked)="functionMock($event)"
+    ></app-stacked-list>
+  </div>
+
+  <ion-label>Data Table</ion-label>
+  <div class="datatable-container">
+    <div>
+      <app-data-table
+        class="ion-padding"
+        [rowData]="rows"
+        [columns]="columns"
+      ></app-data-table>
+    </div>
+  </div>
+</div>

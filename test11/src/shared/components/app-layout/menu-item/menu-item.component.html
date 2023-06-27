@@ -1,0 +1,59 @@
+<ion-item
+  button
+  lines="none"
+  class="ion-no-padding bg-transparent transition ion-margin-vertical"
+  [style.width]="
+    menuWidth === menuMaxWidth ? menuWidth - 12 + 'px' : menuWidth - 6 + 'px'
+  "
+  style="border-top-right-radius: 24px; border-bottom-right-radius: 24px"
+  [routerLink]="menuItem.url ? menuItem.url : null"
+  replaceUrl="true"
+  (click)="menuItem.func && itemClicked(menuItem.func)"
+>
+  <ion-item
+    [style.width]="
+      menuWidth === menuMaxWidth ? menuWidth - 12 + 'px' : menuWidth - 6 + 'px'
+    "
+    [style.--background]="
+      isActive(menuItem) ? 'var(--ion-color-secondary)' : 'transparent'
+    "
+    style="
+      border-top-right-radius: 24px;
+      border-bottom-right-radius: 24px;
+      position: absolute;
+      margin-right: 6px;
+    "
+    class="ion-no-padding transition"
+    lines="none"
+  >
+  </ion-item>
+  <ion-item
+    lines="none"
+    class="ion-no-padding bg-transparent"
+    [style.margin-left]="isSubItem ? '21px' : '7px'"
+    [style.--color]="
+      isActive(menuItem)
+        ? 'var(--ion-color-secondary-contrast)'
+        : 'var(--ion-color-dark)'
+    "
+  >
+    <ion-icon
+      [name]="menuItem.icon"
+      class="ion-margin-horizontal transition"
+    ></ion-icon>
+    <ion-label
+      [style.opacity]="menuWidth === menuMaxWidth ? '1' : '0'"
+      class="transition"
+    >
+      {{ menuItem.name }}
+    </ion-label>
+    <ion-icon
+      *ngIf="displayMenuChevron"
+      [icon]="'chevron-back-outline'">
+      class="ion-margin-horizontal transition"
+      [style.transform]="
+        'translateX(-50%) ' + (menuIsOpen ? 'rotate(270deg)' : 'rotate(180deg)')
+      "
+    ></ion-icon>
+  </ion-item>
+</ion-item>

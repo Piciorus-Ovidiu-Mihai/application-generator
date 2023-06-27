@@ -1,0 +1,24 @@
+.pulse {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: var(--ion-color-medium);
+  }
+  100% {
+    background-color: var(--ion-color-light);
+  }
+}

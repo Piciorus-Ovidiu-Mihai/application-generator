@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+ion-grid {
+  ion-row {
+    border-radius: 4px;
+
+    &:nth-child(odd) {
+      background-color: rgba(var(--ion-color-medium-rgb), 0.2);
+    }
+
+    ion-text {
+      white-space: pre-wrap;
+    }
+  }
+}

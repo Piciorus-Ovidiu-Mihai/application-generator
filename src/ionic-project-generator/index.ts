@@ -1,4 +1,5 @@
 import {
+  MergeStrategy,
   Rule,
   SchematicContext,
   Tree,
@@ -12,72 +13,94 @@ import {
 } from "@angular-devkit/schematics";
 import { execSync } from "child_process";
 
-// You don't have to export the function as default. You can also have more than one rule factory
-// per file.
 export function ionicProjectGenerator(_options: any): Rule {
   const name: string = _options.name;
 
+  createIonicAngularApp(name);
   return (tree: Tree, _context: SchematicContext) => {
-    createIonicAngularApp(name);
-    const rule = chain([addService(_options)]);
+    const rule = chain([
+      addService(_options),
+      addSharedComonents(_options),
+      addSharedDirectives(_options),
+      addSharedPipes(_options),
+      addAuthModule(_options),
+      addInterceptors(_options),
+      addGuards(_options),
+      addDashboardNavigation(_options),
+      addLayout(_options),
+      addCore(_options),
+      addAboutUsPage(_options),
+      overrideAppRoot(_options),
+      addGlobalTheme(_options),
+      overrideAppStyle(_options),
+      overrideDependecies(_options),
+      addDirectivesPage(_options),
+      addPipesPage(_options),
+      addIonicComponentsPage(_options),
+      addComponentsPage(_options),
+    ]);
     return rule(tree, _context) as Rule;
   };
 }
 
+// Create ionic blank application
 function createIonicAngularApp(name: string): void {
   const command = `ionic start ${name} blank --type=angular --capacitor --ng --no-interactive`;
 
   try {
-    execSync(command, { stdio: 'inherit' });
-    console.log('Ionic Angular application created successfully.');
+    execSync(command, { stdio: "inherit" });
+    console.log("Ionic Angular application created successfully.");
   } catch (error) {
-    console.error('Error creating Ionic Angular application:', error);
+    console.error("Error creating Ionic Angular application:", error);
   }
 }
 
+// Add services
 function addService(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath: string = `${_options.name}/src/app`;
+    const moveToPath: string = `${_options.name}/src/app/libs`;
     let serviceBase: string = "";
     if (_options.service === "firebase-base-service")
       serviceBase = "base-firebase";
     else if (_options.service === "base-serivce") serviceBase = "base-service";
     else serviceBase = "base";
 
-    const sourceTemplate = url(`./files/libs/${serviceBase}`);
+    const sourceTemplate = url(`./files/libs/${serviceBase}/`);
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/libs/`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add shared components
 function addSharedComonents(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src`;
+    const moveToPath = `${_options.name}/src/shared/components/`;
     if (_options.sharedComponents === "No") return tree;
 
-    const sourceTemplate = url("./files/shared/components");
+    const sourceTemplate = url("./files/shared/components/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/shared/components`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add shared directives
 function addSharedDirectives(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src`;
+    const moveToPath = `${_options.name}/src/shared/directives/`;
     if (_options.sharedDirectives === "No") return tree;
 
     const sourceTemplate = url("./files/shared/directives");
@@ -86,52 +109,55 @@ function addSharedDirectives(_options: any): Rule {
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/shared/directives`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add Shared Pipes
 function addSharedPipes(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src`;
+    const moveToPath = `${_options.name}/src/shared/pipes/`;
     if (_options.sharedPipes === "No") return tree;
 
-    const sourceTemplate = url("./files/shared/pipes");
+    const sourceTemplate = url("./files/shared/pipes/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/shared/pipes`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add Authentication Module
 function addAuthModule(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app`;
+    const moveToPath = `${_options.name}/src/app/auth/`;
     if (_options.authModule === "No") return tree;
 
-    const sourceTemplate = url("./files/auth");
+    const sourceTemplate = url("./files/auth/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/auth`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add Generic Interceptors
 function addInterceptors(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app`;
+    const moveToPath = `${_options.name}/src/app/libs/interceptors/`;
     if (_options.interceptors === "No") return tree;
 
     const sourceTemplate = url("./files/libs/interceptors");
@@ -140,52 +166,55 @@ function addInterceptors(_options: any): Rule {
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/libs/interceptors/`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add Generic Guards
 function addGuards(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app`;
+    const moveToPath = `${_options.name}/src/app/libs/guards/`;
     if (_options.guards === "No") return tree;
 
-    const sourceTemplate = url("./files/libs/guards");
+    const sourceTemplate = url("./files/libs/guards/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/libs/guards/`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add Dashboard Navigation
 function addDashboardNavigation(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app/apps`;
+    const moveToPath = `${_options.name}/src/app/apps/dashboard/`;
     if (_options.dashboard === "No") return tree;
 
-    const sourceTemplate = url("./files/apps/dashboard");
+    const sourceTemplate = url("./files/apps/dashboard/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/dashboard/`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add main layout for the application
 function addLayout(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app`;
+    const moveToPath = `${_options.name}/src/app/layout/`;
 
     const sourceTemplate = url("./files/layout/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -193,16 +222,17 @@ function addLayout(_options: any): Rule {
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/layout/`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add core module
 function addCore(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app`;
+    const moveToPath = `${_options.name}/src/app/core/`;
 
     const sourceTemplate = url("./files/core/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -210,16 +240,17 @@ function addCore(_options: any): Rule {
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/core/`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
     return tree;
   };
 }
 
+// Add About Us Page
 function addAboutUsPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app/apps`;
+    const moveToPath = `${_options.name}/src/app/apps/about-us/`;
     if (_options.aboutUs === "No") return tree;
 
     const sourceTemplate = url("./files/apps/about-us");
@@ -228,9 +259,204 @@ function addAboutUsPage(_options: any): Rule {
         ..._options,
         ...strings,
       }),
-      move(`${moveToPath}/about-us/`),
+      move(moveToPath),
     ]);
     tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+    return tree;
+  };
+}
+
+export function overrideAppRoot(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app`;
+    const sourceTemplate = url("./files/root/");
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate, MergeStrategy.Overwrite)(
+      tree,
+      _context
+    ) as Tree;
+
+    return tree;
+  };
+}
+
+export function addGlobalTheme(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/theme/`;
+    const sourceTemplate = url("./files/theme/");
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+
+    return tree;
+  };
+}
+
+export function overrideAppStyle(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src`;
+    const sourceTemplate = url("./files/global-style/");
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate, MergeStrategy.Overwrite)(
+      tree,
+      _context
+    ) as Tree;
+
+    return tree;
+  };
+}
+
+export function overrideDependecies(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}`;
+    const sourceTemplate = url("./files/dependencies/");
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate, MergeStrategy.Overwrite)(
+      tree,
+      _context
+    ) as Tree;
+
+    return tree;
+  };
+}
+
+export function addDirectivesPage(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app/apps/directives/`;
+    const sourceTemplate = url("./files/apps/directives/");
+    if (_options.sharedDirectives === "No") return tree;
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+
+    return tree;
+  };
+}
+
+export function addPipesPage(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app/apps/pipes/`;
+    const sourceTemplate = url("./files/apps/pipes/");
+    if (_options.sharedPipes === "No") return tree;
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+
+    return tree;
+  };
+}
+
+export function addIonicComponentsPage(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app/apps/ionic-components`;
+    const sourceTemplate = url("./files/apps/ionic-components/");
+    if (_options.ionicComponents === "No") return tree;
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+
+    return tree;
+  };
+}
+
+export function addComponentsPage(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app/apps/components/`;
+    const sourceTemplate = url("./files/apps/components/");
+    if (_options.sharedComponents === "No") return tree;
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+
+    return tree;
+  };
+}
+
+function removeRoute(name: string): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const filePath = '/path/to/routes/file'; // Replace with the actual path to your routes file
+    const sourceText = tree.read(filePath)!.toString('utf-8');
+    const routesRegex = /{[\s\S]*?children:\s*\[[\s\S]*?\]/g;
+  
+    const updatedText = sourceText.replace(routesRegex, (match) => {
+      const routesObj = JSON.parse(match);
+      const updatedChildren = routesObj.children.filter((child: any) => {
+        return child.path !== name;
+      });
+      routesObj.children = updatedChildren;
+      return JSON.stringify(routesObj, null, 2);
+    });
+
+    tree.overwrite(filePath, updatedText);
+    context.logger.info(`Route '${name}' removed from the routes file.`);
+    
     return tree;
   };
 }
