@@ -37,6 +37,8 @@ export function angularProjectGenerator(_options: any): Rule {
       addDirectivesPage(_options),
       addPipesPage(_options),
       overrideGlobalStyle(_options),
+      addConstantForRoutes(_options),
+      removeMenuItems(_options),
     ]);
     return rule(tree, _context) as Rule;
   };
@@ -198,7 +200,9 @@ function addGuards(_options: any): Rule {
 function addDashboardNavigation(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${_options.name}/src/app/apps/home/`;
-    if (_options.dashboard === "No") return tree;
+    if (_options.dashboard === "No") {
+      return overrideNoAuthAppRoot(_options);
+    }
 
     const sourceTemplate = url("./files/apps/home/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -267,7 +271,7 @@ function addAboutUsPage(_options: any): Rule {
 
 function addTheme(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${_options.name}/src/app/themes/`;
+    const moveToPath = `${_options.name}/src/themes/`;
 
     const sourceTemplate = url("./files/themes/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -397,6 +401,103 @@ export function overrideGlobalStyle(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/`;
     const sourceTemplate = url("./files/override/");
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate, MergeStrategy.Overwrite)(
+      tree,
+      _context
+    ) as Tree;
+
+    return tree;
+  };
+}
+
+export function addConstantForRoutes(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/constants/constants.ts`;
+    let arrayOfRoutes: string[] = [];
+
+    if(_options.sharedPipes === 'No'){
+      arrayOfRoutes.push('pipes')
+    }
+
+    if(_options.sharedComponents === 'No'){
+      arrayOfRoutes.push('components')
+    }
+
+    if(_options.sharedDirectives === 'No'){
+      arrayOfRoutes.push('directives')
+    }
+
+    if(_options.dashboard === 'No'){
+      arrayOfRoutes.push('home')
+    }
+
+    if(_options.aboutUs === 'No'){
+      arrayOfRoutes.push('about-us')
+    }
+
+    const content = `export const routeToRemove = ${JSON.stringify(arrayOfRoutes)};`;
+    tree.create(moveToPath, content);
+    console.log(content)
+
+    return tree;
+  };
+}
+
+export function removeMenuItems(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/constants/menus.ts`;
+    let arrayOfRoutes: string[] = [];
+
+    if(_options.sharedPipes === 'No'){
+      arrayOfRoutes.push('Pipes')
+    }
+
+    if(_options.sharedComponents === 'No'){
+      arrayOfRoutes.push('Components')
+    }
+
+    if(_options.sharedDirectives === 'No'){
+      arrayOfRoutes.push('Directives')
+    }
+
+    if(_options.dashboard === 'No'){
+      arrayOfRoutes.push('Home')
+    }
+
+    if(_options.aboutUs === 'No'){
+      arrayOfRoutes.push('About us')
+    }
+
+    if(_options.authModule === 'No'){
+      arrayOfRoutes.push('Login')
+    }
+
+    const content = `export const menus = ${JSON.stringify(arrayOfRoutes)};`;
+    tree.create(moveToPath, content);
+    console.log(content)
+
+    return tree;
+  };
+}
+
+export function overrideNoAuthAppRoot(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app`;
+    const sourceTemplate = url("./override/override-root/");
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({

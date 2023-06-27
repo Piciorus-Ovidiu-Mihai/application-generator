@@ -428,7 +428,7 @@ export function addIonicComponentsPage(_options: any): Rule {
   const name = _options.name;
 
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${name}/src/app/apps/ionic-components`;
+    const moveToPath = `${name}/src/app/apps/ionic-components/`;
     const sourceTemplate = url("./files/apps/ionic-components/");
     if (_options.ionicComponents === "No"){
       return tree;
@@ -498,7 +498,7 @@ export function addConstantForRoutes(_options: any): Rule {
       arrayOfRoutes.push('about-us')
     }
 
-    const content = `export const MY_CONSTANT = ${JSON.stringify(arrayOfRoutes)};`;
+    const content = `export const routeToRemove = ${JSON.stringify(arrayOfRoutes)};`;
     tree.create(moveToPath, content);
     console.log(content)
 
@@ -540,7 +540,7 @@ export function removeMenuItems(_options: any): Rule {
       arrayOfRoutes.push('Authentication')
     }
 
-    const content = `export const MY_CONSTANT = ${JSON.stringify(arrayOfRoutes)};`;
+    const content = `export const menus = ${JSON.stringify(arrayOfRoutes)};`;
     tree.create(moveToPath, content);
     console.log(content)
 

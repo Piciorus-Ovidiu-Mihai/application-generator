@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { menus } from 'src/constants/menus';
 
 @Component({
   selector: 'app-navigation',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent {
-  public headerMenuButtons = [
+  public headerMenuButtons = this.removeObjectsByName(menus, [
     {
       title: 'Home',
       ref: 'app/home',
@@ -31,7 +32,7 @@ export class NavigationComponent {
       title: 'Login',
       ref: 'auth/login',
     },
-  ];
+  ]);
   public isChecked = false;
 
   public getHref(ref: string): string {
@@ -44,5 +45,9 @@ export class NavigationComponent {
 
   public closeMenu(): void {
     this.isChecked = false;
+  }
+
+  public removeObjectsByName(names: string[], objects: any[]): any[] {
+    return objects.filter((object) => !names.includes(object.title));
   }
 }

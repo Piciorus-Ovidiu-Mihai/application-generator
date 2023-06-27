@@ -1,6 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreComponent } from './core/core.component';
+import { routeToRemove } from 'src/constants/constants';
+
+function modifyRoutes(routes: Routes, routesToRemove: string[]): Routes {
+  const modifiedRoutes: Routes = [];
+
+  routes.forEach((route) => {
+    const modifiedRoute: any = { ...route };
+
+    if (route.children) {
+      modifiedRoute.children = route.children.filter((child) => {
+        const shouldRemove = routesToRemove.includes(child.path);
+
+        if (shouldRemove) {
+          console.log(`Removing route: ${child.path}`);
+        }
+
+        return !shouldRemove;
+      });
+    }
+
+    modifiedRoutes.push(modifiedRoute);
+  });
+
+  return modifiedRoutes;
+}
 
 const routes: Routes = [
   {
@@ -34,7 +59,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(modifyRoutes(routes, routeToRemove))],
   exports: [RouterModule],
 })
 export class CoreRoutingModule {}

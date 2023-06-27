@@ -19,8 +19,7 @@ $angular-project-template-theme: mat.define-light-theme(
 );
 @include mat.all-component-themes($angular-project-template-theme);
 
-@import './themes/global.scss';
-@import "./app/styles/colors/variables.scss";
+@import './themes/variables.scss';
 
 html:not(.hydrated) body {
   display: initial !important;
