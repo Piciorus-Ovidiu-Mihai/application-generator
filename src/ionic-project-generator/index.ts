@@ -84,7 +84,18 @@ function addService(_options: any): Rule {
 function addSharedComonents(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${_options.name}/src/shared/components/`;
-    if (_options.sharedComponents === "No") return tree;
+    if (_options.sharedComponents === "No") {
+      const sourceTemplate = url("./files/shared/not-shared-components/");
+      const sourceParametrizeTemplate = apply(sourceTemplate, [
+        template({
+          ..._options,
+          ...strings,
+        }),
+        move(moveToPath),
+      ]);
+      tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+      return tree;
+    };
 
     const sourceTemplate = url("./files/shared/components/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -200,7 +211,12 @@ function addGuards(_options: any): Rule {
 function addDashboardNavigation(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${_options.name}/src/app/apps/dashboard/`;
-    if (_options.dashboard === "No") return tree;
+    if (_options.dashboard === "No") {
+      return removeRouteFromFile(
+        `${_options.name}/src/app/core/core.module.ts`,
+        "dashboard"
+      );
+    }
 
     const sourceTemplate = url("./files/apps/dashboard/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -255,7 +271,12 @@ function addCore(_options: any): Rule {
 function addAboutUsPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${_options.name}/src/app/apps/about-us/`;
-    if (_options.aboutUs === "No") return tree;
+    if (_options.aboutUs === "No") {
+      return removeRouteFromFile(
+        `${name}/src/app/core/core.module.ts`,
+        "about-us"
+      );
+    }
 
     const sourceTemplate = url("./files/apps/about-us");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -388,7 +409,12 @@ export function addDirectivesPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/app/apps/directives/`;
     const sourceTemplate = url("./files/apps/directives/");
-    if (_options.sharedDirectives === "No") return tree;
+    if (_options.sharedDirectives === "No") {
+      return removeRouteFromFile(
+        `${name}/src/app/core/core.module.ts`,
+        "directives"
+      );
+    }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
@@ -409,7 +435,12 @@ export function addPipesPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/app/apps/pipes/`;
     const sourceTemplate = url("./files/apps/pipes/");
-    if (_options.sharedPipes === "No") return tree;
+    if (_options.sharedPipes === "No") {
+      return removeRouteFromFile(
+        `${name}/src/app/core/core.module.ts`,
+        "pipes"
+      );
+    }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
@@ -431,7 +462,10 @@ export function addIonicComponentsPage(_options: any): Rule {
     const moveToPath = `${name}/src/app/apps/ionic-components/`;
     const sourceTemplate = url("./files/apps/ionic-components/");
     if (_options.ionicComponents === "No"){
-      return tree;
+      return removeRouteFromFile(
+        `${name}/src/app/core/core.module.ts`,
+        "ionic-components"
+      );
     }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -453,7 +487,12 @@ export function addComponentsPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/app/apps/components/`;
     const sourceTemplate = url("./files/apps/components/");
-    if (_options.sharedComponents === "No") return tree;
+    if (_options.sharedComponents === "No") {
+      return removeRouteFromFile(
+        `${name}/src/app/core/core.module.ts`,
+        "components"
+      );
+    }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
@@ -543,6 +582,49 @@ export function removeMenuItems(_options: any): Rule {
     const content = `export const menus = ${JSON.stringify(arrayOfRoutes)};`;
     tree.create(moveToPath, content);
     console.log(content)
+
+    return tree;
+  };
+}
+
+function removeRouteFromFile(filePath: string, routeName: string): Rule {
+  return (tree: Tree, _context: SchematicContext) => {
+    if (!tree.exists(filePath)) {
+      console.error(`File "${filePath}" does not exist.`);
+      return;
+    }
+
+    const fileContent = tree.read(filePath)?.toString("utf-8");
+    if (!fileContent) {
+      console.error(`Failed to read content from file "${filePath}".`);
+      return;
+    }
+
+    const lines = fileContent.split("\n");
+    const updatedLines = [];
+    let removeNextTwoLines = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      if (line.includes(`path: '${routeName}'`)) {
+        // Skip current line and the next two lines
+        i += 2;
+        removeNextTwoLines = true;
+        continue;
+      }
+
+      if (removeNextTwoLines) {
+        // Skip next two lines
+        removeNextTwoLines = false;
+        continue;
+      }
+
+      updatedLines.push(line);
+    }
+
+    const updatedContent = updatedLines.join("\n");
+    tree.overwrite(filePath, updatedContent);
 
     return tree;
   };

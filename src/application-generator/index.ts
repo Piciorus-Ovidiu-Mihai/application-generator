@@ -1,10 +1,13 @@
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, chain } from '@angular-devkit/schematics';
+import { angularProjectGenerator } from '../angular-project-generator';
 
 
-// You don't have to export the function as default. You can also have more than one rule factory
-// per file.
 export function applicationGenerator(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    return tree;
+    const rule = chain([
+      angularProjectGenerator(_options),
+
+    ]);
+    return rule(tree, _context) as Rule;
   };
 }

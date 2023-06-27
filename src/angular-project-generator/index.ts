@@ -201,7 +201,10 @@ function addDashboardNavigation(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${_options.name}/src/app/apps/home/`;
     if (_options.dashboard === "No") {
-      return overrideNoAuthAppRoot(_options);
+      return removeRouteFromFile(
+        `${name}/src/app/core/core-routing.module.ts`,
+        "home"
+      );
     }
 
     const sourceTemplate = url("./files/apps/home/");
@@ -254,7 +257,12 @@ function addCore(_options: any): Rule {
 function addAboutUsPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${_options.name}/src/app/apps/about-us/`;
-    if (_options.aboutUs === "No") return tree;
+    if (_options.aboutUs === "No") {
+      return removeRouteFromFile(
+        `${_options.name}/src/app/core/core-routing.module.ts`,
+        "about-us"
+      );
+    }
 
     const sourceTemplate = url("./files/apps/about-us/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -338,7 +346,12 @@ export function addDirectivesPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/app/apps/directives/`;
     const sourceTemplate = url("./files/apps/directives/");
-    if (_options.sharedDirectives === "No") return tree;
+    if (_options.sharedDirectives === "No") {
+      return removeRouteFromFile(
+        `${name}/src/app/core/core-routing.module.ts`,
+        "directives"
+      );
+    }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
@@ -359,7 +372,12 @@ export function addPipesPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/app/apps/pipes/`;
     const sourceTemplate = url("./files/apps/pipes/");
-    if (_options.sharedPipes === "No") return tree;
+    if (_options.sharedPipes === "No") {
+      return removeRouteFromFile(
+        `${name}/src/app/core/core-routing.module.ts`,
+        "pipes"
+      );
+    }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
@@ -380,7 +398,12 @@ export function addComponentsPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/app/apps/components/`;
     const sourceTemplate = url("./files/apps/components/");
-    if (_options.sharedComponents === "No") return tree;
+    if (_options.sharedComponents === "No") {
+      return removeRouteFromFile(
+        `${name}/src/app/core/core-routing.module.ts`,
+        "components"
+      );
+    }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
@@ -425,29 +448,31 @@ export function addConstantForRoutes(_options: any): Rule {
     const moveToPath = `${name}/src/constants/constants.ts`;
     let arrayOfRoutes: string[] = [];
 
-    if(_options.sharedPipes === 'No'){
-      arrayOfRoutes.push('pipes')
+    if (_options.sharedPipes === "No") {
+      arrayOfRoutes.push("pipes");
     }
 
-    if(_options.sharedComponents === 'No'){
-      arrayOfRoutes.push('components')
+    if (_options.sharedComponents === "No") {
+      arrayOfRoutes.push("components");
     }
 
-    if(_options.sharedDirectives === 'No'){
-      arrayOfRoutes.push('directives')
+    if (_options.sharedDirectives === "No") {
+      arrayOfRoutes.push("directives");
     }
 
-    if(_options.dashboard === 'No'){
-      arrayOfRoutes.push('home')
+    if (_options.dashboard === "No") {
+      arrayOfRoutes.push("home");
     }
 
-    if(_options.aboutUs === 'No'){
-      arrayOfRoutes.push('about-us')
+    if (_options.aboutUs === "No") {
+      arrayOfRoutes.push("about-us");
     }
 
-    const content = `export const routeToRemove = ${JSON.stringify(arrayOfRoutes)};`;
+    const content = `export const routeToRemove = ${JSON.stringify(
+      arrayOfRoutes
+    )};`;
     tree.create(moveToPath, content);
-    console.log(content)
+    console.log(content);
 
     return tree;
   };
@@ -460,33 +485,33 @@ export function removeMenuItems(_options: any): Rule {
     const moveToPath = `${name}/src/constants/menus.ts`;
     let arrayOfRoutes: string[] = [];
 
-    if(_options.sharedPipes === 'No'){
-      arrayOfRoutes.push('Pipes')
+    if (_options.sharedPipes === "No") {
+      arrayOfRoutes.push("Pipes");
     }
 
-    if(_options.sharedComponents === 'No'){
-      arrayOfRoutes.push('Components')
+    if (_options.sharedComponents === "No") {
+      arrayOfRoutes.push("Components");
     }
 
-    if(_options.sharedDirectives === 'No'){
-      arrayOfRoutes.push('Directives')
+    if (_options.sharedDirectives === "No") {
+      arrayOfRoutes.push("Directives");
     }
 
-    if(_options.dashboard === 'No'){
-      arrayOfRoutes.push('Home')
+    if (_options.dashboard === "No") {
+      arrayOfRoutes.push("Home");
     }
 
-    if(_options.aboutUs === 'No'){
-      arrayOfRoutes.push('About us')
+    if (_options.aboutUs === "No") {
+      arrayOfRoutes.push("About us");
     }
 
-    if(_options.authModule === 'No'){
-      arrayOfRoutes.push('Login')
+    if (_options.authModule === "No") {
+      arrayOfRoutes.push("Login");
     }
 
     const content = `export const menus = ${JSON.stringify(arrayOfRoutes)};`;
     tree.create(moveToPath, content);
-    console.log(content)
+    console.log(content);
 
     return tree;
   };
@@ -510,6 +535,49 @@ export function overrideNoAuthAppRoot(_options: any): Rule {
       tree,
       _context
     ) as Tree;
+
+    return tree;
+  };
+}
+
+function removeRouteFromFile(filePath: string, routeName: string): Rule {
+  return (tree: Tree, _context: SchematicContext) => {
+    if (!tree.exists(filePath)) {
+      console.error(`File "${filePath}" does not exist.`);
+      return;
+    }
+
+    const fileContent = tree.read(filePath)?.toString("utf-8");
+    if (!fileContent) {
+      console.error(`Failed to read content from file "${filePath}".`);
+      return;
+    }
+
+    const lines = fileContent.split("\n");
+    const updatedLines = [];
+    let removeNextTwoLines = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      if (line.includes(`path: '${routeName}'`)) {
+        // Skip current line and the next two lines
+        i += 2;
+        removeNextTwoLines = true;
+        continue;
+      }
+
+      if (removeNextTwoLines) {
+        // Skip next two lines
+        removeNextTwoLines = false;
+        continue;
+      }
+
+      updatedLines.push(line);
+    }
+
+    const updatedContent = updatedLines.join("\n");
+    tree.overwrite(filePath, updatedContent);
 
     return tree;
   };
