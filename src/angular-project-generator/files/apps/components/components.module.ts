@@ -8,7 +8,14 @@ import { LoadingComponent } from 'src/shared/components/loading/loading.componen
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [ComponentsListComponent, ComponentsPageComponent],
@@ -19,7 +26,14 @@ import {MatListModule} from '@angular/material/list';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatTableModule,
   ],
 })
 export class ComponentsModule {}
