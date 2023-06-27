@@ -16,10 +16,12 @@ import { execSync } from "child_process";
 export function ionicProjectGenerator(_options: any): Rule {
   const name: string = _options.name;
 
+  
   createIonicAngularApp(name);
   return (tree: Tree, _context: SchematicContext) => {
     const rule = chain([
       addService(_options),
+      overrideAppRoot(_options),
       addSharedComonents(_options),
       addSharedDirectives(_options),
       addSharedPipes(_options),
@@ -30,7 +32,6 @@ export function ionicProjectGenerator(_options: any): Rule {
       addLayout(_options),
       addCore(_options),
       addAboutUsPage(_options),
-      overrideAppRoot(_options),
       addGlobalTheme(_options),
       overrideAppStyle(_options),
       overrideDependecies(_options),
@@ -38,6 +39,7 @@ export function ionicProjectGenerator(_options: any): Rule {
       addPipesPage(_options),
       addIonicComponentsPage(_options),
       addComponentsPage(_options),
+      addConstantForRoutes(_options)
     ]);
     return rule(tree, _context) as Rule;
   };
@@ -139,7 +141,9 @@ function addSharedPipes(_options: any): Rule {
 function addAuthModule(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${_options.name}/src/app/auth/`;
-    if (_options.authModule === "No") return tree;
+    if (_options.authModule === "No") {
+      return overrideNoAuthAppRoot(_options);
+    }
 
     const sourceTemplate = url("./files/auth/");
     const sourceParametrizeTemplate = apply(sourceTemplate, [
@@ -289,6 +293,29 @@ export function overrideAppRoot(_options: any): Rule {
   };
 }
 
+export function overrideNoAuthAppRoot(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app`;
+    const sourceTemplate = url("./override/not-aut/");
+
+    const sourceParametrizeTemplate = apply(sourceTemplate, [
+      template({
+        ..._options,
+        ...strings,
+      }),
+      move(moveToPath),
+    ]);
+    tree = mergeWith(sourceParametrizeTemplate, MergeStrategy.Overwrite)(
+      tree,
+      _context
+    ) as Tree;
+
+    return tree;
+  };
+}
+
 export function addGlobalTheme(_options: any): Rule {
   const name = _options.name;
 
@@ -403,7 +430,9 @@ export function addIonicComponentsPage(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const moveToPath = `${name}/src/app/apps/ionic-components`;
     const sourceTemplate = url("./files/apps/ionic-components/");
-    if (_options.ionicComponents === "No") return tree;
+    if (_options.ionicComponents === "No"){
+      return tree;
+    }
 
     const sourceParametrizeTemplate = apply(sourceTemplate, [
       template({
@@ -439,24 +468,82 @@ export function addComponentsPage(_options: any): Rule {
   };
 }
 
-function removeRoute(name: string): Rule {
-  return (tree: Tree, context: SchematicContext) => {
-    const filePath = '/path/to/routes/file'; // Replace with the actual path to your routes file
-    const sourceText = tree.read(filePath)!.toString('utf-8');
-    const routesRegex = /{[\s\S]*?children:\s*\[[\s\S]*?\]/g;
-  
-    const updatedText = sourceText.replace(routesRegex, (match) => {
-      const routesObj = JSON.parse(match);
-      const updatedChildren = routesObj.children.filter((child: any) => {
-        return child.path !== name;
-      });
-      routesObj.children = updatedChildren;
-      return JSON.stringify(routesObj, null, 2);
-    });
+export function addConstantForRoutes(_options: any): Rule {
+  const name = _options.name;
 
-    tree.overwrite(filePath, updatedText);
-    context.logger.info(`Route '${name}' removed from the routes file.`);
-    
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/constants/constants.ts`;
+    let arrayOfRoutes: string[] = [];
+    if (_options.ionicComponents === "No"){
+      arrayOfRoutes.push('ionic-components')
+    }
+
+    if(_options.sharedPipes === 'No'){
+      arrayOfRoutes.push('pipes')
+    }
+
+    if(_options.sharedComponents === 'No'){
+      arrayOfRoutes.push('components')
+    }
+
+    if(_options.sharedDirectives === 'No'){
+      arrayOfRoutes.push('directives')
+    }
+
+    if(_options.dashboard === 'No'){
+      arrayOfRoutes.push('dashboard')
+    }
+
+    if(_options.aboutUs === 'No'){
+      arrayOfRoutes.push('about-us')
+    }
+
+    const content = `export const MY_CONSTANT = ${JSON.stringify(arrayOfRoutes)};`;
+    tree.create(moveToPath, content);
+    console.log(content)
+
+    return tree;
+  };
+}
+
+export function removeMenuItems(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/constants/menus.ts`;
+    let arrayOfRoutes: string[] = [];
+    if (_options.ionicComponents === "No"){
+      arrayOfRoutes.push('Ionic')
+    }
+
+    if(_options.sharedPipes === 'No'){
+      arrayOfRoutes.push('Pipes')
+    }
+
+    if(_options.sharedComponents === 'No'){
+      arrayOfRoutes.push('Components')
+    }
+
+    if(_options.sharedDirectives === 'No'){
+      arrayOfRoutes.push('Directives')
+    }
+
+    if(_options.dashboard === 'No'){
+      arrayOfRoutes.push('Dashboard')
+    }
+
+    if(_options.aboutUs === 'No'){
+      arrayOfRoutes.push('About us')
+    }
+
+    if(_options.authModule === 'No'){
+      arrayOfRoutes.push('Authentication')
+    }
+
+    const content = `export const MY_CONSTANT = ${JSON.stringify(arrayOfRoutes)};`;
+    tree.create(moveToPath, content);
+    console.log(content)
+
     return tree;
   };
 }
