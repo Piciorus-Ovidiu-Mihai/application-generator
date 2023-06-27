@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "NgNewSchema",
+  "title": "Ionic Angular Application",
+  "type": "object",
+  "description": "Create an ionic application with Angular",
+  "properties": {
+    "fronEnd": {
+      "type": "string",
+      "enum": ["Ionic", "Angular"],
+      "x-prompt": "Do you want Ionic or Angular Application?"
+    }
+  },
+  "required": [
+    "fronEnd"
+  ]
+}

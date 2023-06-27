@@ -3,7 +3,8 @@
   "schematics": {
     "application-generator": {
       "description": "A blank schematic.",
-      "factory": "./application-generator/index#applicationGenerator"
+      "factory": "./application-generator/index#applicationGenerator",
+      "schema": "./application-generator/schema.json"
     },
     "back-end-architecture": {
       "description": "Clone the template for the back-end project",
