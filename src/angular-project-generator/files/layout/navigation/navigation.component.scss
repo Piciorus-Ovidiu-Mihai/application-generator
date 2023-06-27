@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: var(--app-secondary);
+  background-color: var(--app-primary);
   color: #fff;
 
   a {
@@ -26,7 +26,7 @@
   }
 
   .menu li:hover {
-    background-color: var(--app-primary);
+    background-color: var(--app-secondary);
     border-radius: 5px;
     transition: 0.3s ease;
   }
@@ -87,7 +87,7 @@
     .menu {
       display: none;
       position: absolute;
-      background-color: var(--app-primary);
+      background-color: var(--app-secondary);
       right: 0;
       left: 0;
       text-align: center;
@@ -95,7 +95,7 @@
     }
     .menu li:hover {
       display: inline-block;
-      background-color: var(--app-primary);
+      background-color: var(--app-secondary);
       transition: 0.3s ease;
     }
     .menu li + li {
@@ -113,7 +113,7 @@
       transform: translateX(35%);
     }
     .dropdown li:hover {
-      background-color: #4c9e9e;
+      background-color: var(--app-secondary);
     }
   }
 }
