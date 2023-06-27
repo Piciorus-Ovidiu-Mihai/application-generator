@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreComponent } from './core/core.component';
-import { routeToRemove } from 'src/constants/constants';
+import { routeToRemove } from 'src/constants/routes';
 
 function modifyRoutes(routes: Routes, routesToRemove: string[]): Routes {
   const modifiedRoutes: Routes = [];
