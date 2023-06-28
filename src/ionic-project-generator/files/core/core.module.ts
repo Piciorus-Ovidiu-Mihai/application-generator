@@ -35,47 +35,31 @@ const routes: Routes = [
     component: CoreComponent,
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('../apps/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
+				path: 'dashboard',
+				loadChildren: () => import('../apps/dashboard/dashboard.module').then((m) => m.DashboardModule),
+			},
       {
-        path: 'components',
-        loadChildren: () =>
-          import('../apps/components/components.module').then(
-            (m) => m.ComponentsModule
-          ),
-      },
+				path: 'components',
+				loadChildren: () => import('../apps/components/components.module').then((m) => m.ComponentsModule),
+			},
       {
-        path: 'ionic-components',
-        loadChildren: () =>
-          import('../apps/ionic-components/ionic-components.module').then(
-            (m) => m.IonicComponentsModule
-          ),
-      },
+				path: 'ionic-components',
+				loadChildren: () => import('../apps/ionic-components/ionic-components.module').then((m) => m.IonicComponentsModule),
+			},
       {
-        path: 'directives',
-        loadChildren: () =>
-          import('../apps/directives/directives.module').then(
-            (m) => m.DirectivesModule
-          ),
-      },
+				path: 'directives',
+				loadChildren: () => import('../apps/directives/directives.module').then((m) => m.DirectivesModule),
+			},
       {
-        path: 'pipes',
-        loadChildren: () =>
-          import('../apps/pipes/pipes.module').then((m) => m.PipesPageModule),
-      },
+				path: 'pipes',
+				loadChildren: () => import('../apps/pipes/pipes.module').then((m) => m.PipesPageModule),
+			},
       {
-        path: 'about-us',
-        loadChildren: () =>
-          import('../apps/about-us/about-us.module').then(
-            (m) => m.AboutUsModule
-          ),
-      },
+				path: 'about-us',
+				loadChildren: () => import('../apps/about-us/about-us.module').then((m) => m.AboutUsModule),
+			},
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-      { path: '**', redirectTo: '/components' },
+      { path: '**', redirectTo: '/components' }
     ],
   },
 ];
