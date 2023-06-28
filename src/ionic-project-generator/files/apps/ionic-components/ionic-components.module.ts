@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +17,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
-    IonicModule
-  ]
+    IonicModule,
+  ],
 })
-export class IonicComponentsModule { }
+export class IonicComponentsModule {}

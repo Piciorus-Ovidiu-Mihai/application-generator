@@ -23,7 +23,7 @@ const routes: Routes = [
     DataTableModule,
     DetailsCardLayoutComponent,
     DetailsTableComponent,
-    StackedListModule
+    StackedListModule,
   ],
 })
 export class ComponentsModule {}

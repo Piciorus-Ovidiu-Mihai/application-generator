@@ -1,5 +1,9 @@
 <div class="components-container">
-  <ion-label>Datails Card</ion-label>
+  <div class="chip-title">
+    <ion-label style="font-size: large; color: white"
+      >Datails Card Component</ion-label
+    >
+  </div>
   <div class="details-layout">
     <app-details-card-layout
       *ngIf="details"
@@ -16,7 +20,11 @@
     </app-details-card-layout>
   </div>
 
-  <ion-label style="margin-top:60px;">List</ion-label>
+  <div class="chip-title">
+    <ion-label style="margin-top: 60px; font-size: large; color: white"
+      >List Component</ion-label
+    >
+  </div>
   <div class="list-container">
     <app-stacked-list
       [items]="items"
@@ -25,7 +33,11 @@
     ></app-stacked-list>
   </div>
 
-  <ion-label>Data Table</ion-label>
+  <div class="chip-title">
+    <ion-label style="font-size: large; color: white"
+      >Data table Component</ion-label
+    >
+  </div>
   <div class="datatable-container">
     <div>
       <app-data-table

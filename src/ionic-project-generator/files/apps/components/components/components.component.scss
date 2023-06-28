@@ -1,4 +1,4 @@
-.components-container{
+.components-container {
   height: 100%;
   width: 100%;
   display: flex;
@@ -9,19 +9,25 @@
   overflow: auto;
   overflow-x: hidden;
 
-  .datatable-container{
+  .datatable-container {
     height: 400px;
     width: 100%;
   }
 
-  .details-layout{
+  .details-layout {
     height: 400px;
     width: 100%;
   }
 
-  .list-container{
+  .list-container {
     height: 500px;
     width: 100%;
     margin: 10px;
+  }
+
+  .chip-title {
+    background-color: var(--ion-color-primary);
+    padding: 4px;
+    border-radius: 10px;
   }
 }

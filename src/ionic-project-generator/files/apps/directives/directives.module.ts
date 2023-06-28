@@ -5,9 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from 'src/shared/directives/highlight.directive';
 import { ScrollSpyDirective } from 'src/shared/directives/scroll-spy.directive';
-import { SkeletonLoadingDirective } from 'src/shared/directives/skeleton-loading.directive';
 import { ConfirmClickDirective } from 'src/shared/directives/are-you-sure.directive';
 import { MinMaxDirective } from 'src/shared/directives/min-max.directive';
+import { SkeletonLoadingDirective } from 'src/shared/directives/skeleton-loading.directive';
 
 
 const routes: Routes = [

@@ -1,43 +1,150 @@
 .directives-list-container {
   display: flex;
-  flex-wrap: nowrap;
   align-content: center;
   justify-content: center;
   align-items: center;
   width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+
+  .card {
+    justify-content: space-between;
+    width: 45%;
+    height: 25%;
+    border-radius: 12px;
+    border: 1px solid var(--ion-color-primary-contrastt);
+    background-image: none;
+    box-shadow: 5px 5px 30px 0 var(--ion-color-primary-contrastt);
+    text-align: left;
+    color: var(--ion-color-dark);
+    background-color: var(--ion-color-secondary);
+    border-radius: 30px;
+    display: flex;
+    position: relative;
+    pointer-events: initial;
+    flex-direction: column;
+    padding: 20px;
+    overflow: auto;
+    gap: 5px;
+
+    table {
+      width: 100%;
+    }
+
+    .card-title {
+      color: white;
+      margin-bottom: 10px;
+      font-size: large;
+    }
+
+    .demo-section + .demo-section {
+      margin-top: 16px;
+    }
+
+    .example-section {
+      margin: 12px 0;
+    }
+
+    .example-margin {
+      margin: 0 12px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-top: 4px;
+    }
+
+    &:hover {
+      background-color: var(--ion-color-primary);
+      cursor: pointer;
+    }
+  }
+}
+
+.card-for-skeleton-loading{
+  width: 60%;
+  background-color: red;
+  height: 50%;
+}
+
+.container {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: start;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  align-items: center;
+  background-color: var(--ion-color-light);
+  border-radius: 20px;
 
-  .highlight-directives-list {
+  .cards-list {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    height: 30%;
+    gap: 20px;
+    flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    margin-bottom: 20px;
 
-    button{
+    .text-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .card-icon {
+      background-color: var(--ion-color-primary);
       width: 20%;
-      border-radius: 10px;
-      border-color: white;
-      box-shadow: none;
-      background-color: aliceblue;
+      height: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 60px;
+
+      mat-icon {
+        align-self: center;
+        color: var(--ion-color-secondary);
+      }
+    }
+
+    .card {
+      justify-content: space-between;
+      width: 25%;
+      height: 25%;
+      border-radius: 12px;
+      border: 1px solid var(--ion-color-primary-contrast);
+      background-image: none;
+      box-shadow: 5px 5px 30px 0 var(--ion-color-primary-contrast);
+      text-align: left;
+      color: var(--ion-color-dark);
+      background-color: var(--ion-color-primary-contrast);
+      border-radius: 30px;
+      display: flex;
+      position: relative;
+      pointer-events: initial;
+      flex-direction: column;
+      padding: 20px;
+
+      &:hover{
+        background-color: var(--ion-color-primary);
+        cursor: pointer;
+      }
     }
   }
+}
 
-  .confirm-directives-list{
-    display: flex;
-    flex-direction: column;
-    height: 30%;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-
-    button{
-      width: 20%;
-      border-radius: 10px;
-      border-color: white;
-      box-shadow: none;
-      background-color: aliceblue;
-    }
-  }
+.chip-title{
+  background-color: var(--ion-color-primary);
+  padding: 4px;
+  border-radius: 10px;
 }

@@ -1,0 +1,15 @@
+.pipes-container {
+  height: 60%;
+  width: 80%;
+  margin: 40px;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: white;
+
+  .header-row {
+    background-color: rgb(185, 185, 185);
+    border-radius: 20px;
+  }
+}

@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PipesComponent } from './pipes/pipes.component';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { PipesModule } from 'src/shared/pipes/pipes/pipes.module';
+import { PipesModule } from 'src/shared/pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
-
 
 const routes: Routes = [
   {
@@ -20,7 +19,7 @@ const routes: Routes = [
     PipesModule,
     FormsModule,
     CommonModule,
-    RouterModule.forChild(routes)
-  ]
+    RouterModule.forChild(routes),
+  ],
 })
-export class PipesPageModule { }
+export class PipesPageModule {}

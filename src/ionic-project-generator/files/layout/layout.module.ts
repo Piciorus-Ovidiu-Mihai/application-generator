@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { AppPageLayoutModule } from 'src/shared/components/app-page-layout/app-page-layout.module';
 
-
-
 @NgModule({
   declarations: [LayoutComponent],
   imports: [
@@ -15,8 +13,8 @@ import { AppPageLayoutModule } from 'src/shared/components/app-page-layout/app-p
     AppMainLayoutModule,
     RouterModule,
     IonicModule,
-    AppPageLayoutModule
+    AppPageLayoutModule,
   ],
-  exports: [LayoutComponent]
+  exports: [LayoutComponent],
 })
-export class LayoutModule { }
+export class LayoutModule {}

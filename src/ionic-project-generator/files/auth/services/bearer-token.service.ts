@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private basePath: string = environment.API_ENDPOINT;
@@ -14,7 +14,9 @@ export class AuthService {
   public user: Observable<any>;
 
   public constructor(private http: HttpClient, private router: Router) {
-    this.userSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user') || '{}'));
+    this.userSubject = new BehaviorSubject<any>(
+      JSON.parse(localStorage.getItem('user') || '{}')
+    );
     this.user = this.userSubject.asObservable();
   }
 
@@ -23,13 +25,19 @@ export class AuthService {
   }
 
   public login(email: string, password: string): any {
-    return this.http.post(this.basePath + '/users/login', { email: email, password: password }).pipe(map((user: any) => {
-
-      user.authdata = window.btoa(email + ':' + password);
-      localStorage.setItem('user', JSON.stringify(user));
-      this.userSubject.next(user);
-      return user;
-    }));
+    return this.http
+      .post(this.basePath + '/users/login', {
+        email: email,
+        password: password,
+      })
+      .pipe(
+        map((user: any) => {
+          user.authdata = window.btoa(email + ':' + password);
+          localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user);
+          return user;
+        })
+      );
   }
 
   public logout(): void {
@@ -38,8 +46,19 @@ export class AuthService {
     this.router.navigate(['auth/login']);
   }
 
-  public register(email: string, password: string, firstName: string, lastName: string, confirmPassword: string): any {
-    return this.http.post(this.basePath + '/users/register',
-      { email: email, password: password, confirmPassword: confirmPassword, firstName: firstName, lastName: lastName });
+  public register(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    confirmPassword: string
+  ): any {
+    return this.http.post(this.basePath + '/users/register', {
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      firstName: firstName,
+      lastName: lastName,
+    });
   }
 }

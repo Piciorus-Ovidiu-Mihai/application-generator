@@ -39,7 +39,8 @@ export function ionicProjectGenerator(_options: any): Rule {
       addPipesPage(_options),
       addIonicComponentsPage(_options),
       addComponentsPage(_options),
-      addConstantForRoutes(_options)
+      addConstantForRoutes(_options),
+      removeMenuItems(_options),
     ]);
     return rule(tree, _context) as Rule;
   };

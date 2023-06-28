@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component } from '@angular/core';
 import { DataTableColDef } from 'src/shared/components/data-table/interfaces/col-def.interface';
 import { DetailsTableRow } from 'src/shared/components/details-table/details-table.component';
 import { StackedListItem } from 'src/shared/components/stacked-list/stacked-list.util';
@@ -9,7 +8,7 @@ import { StackedListItem } from 'src/shared/components/stacked-list/stacked-list
   templateUrl: './components.component.html',
   styleUrls: ['./components.component.scss'],
 })
-export class ComponentsComponent implements OnInit {
+export class ComponentsComponent {
   public columns: DataTableColDef[] = [
     {
       headerName: 'Name',
@@ -146,6 +145,4 @@ export class ComponentsComponent implements OnInit {
   public functionMock(event: any): void {
     console.log(event);
   }
-
-  public ngOnInit(): void {}
 }

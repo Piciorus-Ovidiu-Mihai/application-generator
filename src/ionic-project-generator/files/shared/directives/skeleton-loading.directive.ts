@@ -1,47 +1,33 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[appSkeletonLoading]',
-  standalone: true,
+  selector: '[skeletonLoading]',
+  standalone: true
 })
-export class SkeletonLoadingDirective implements OnChanges {
-  @Input('appSkeletonLoading') loading: boolean = false;
-  @Input() skeletonColor: string = '#f2f2f2';
-  @Input() skeletonAnimation: string = 'pulse';
+export class SkeletonLoadingDirective implements OnInit {
+  @Input('skeletonLoading') isLoading: boolean;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private elementRef: ElementRef) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if ('loading' in changes) {
-      if (this.loading) {
-        this.showSkeleton();
-      } else {
-        this.hideSkeleton();
-      }
+  ngOnInit() {
+    if (this.isLoading) {
+      this.addSkeletonStyles();
     }
   }
 
-  private showSkeleton() {
-    this.renderer.setStyle(this.el.nativeElement, 'position', 'relative');
-    this.renderer.setStyle(this.el.nativeElement, 'overflow', 'hidden');
-    this.renderer.setStyle(this.el.nativeElement, 'background-color', this.skeletonColor);
+  private addSkeletonStyles() {
+    const element = this.elementRef.nativeElement;
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('skeleton-loading-wrapper');
+    element.parentNode.insertBefore(wrapper, element);
+    wrapper.appendChild(element);
 
-    const skeletonElement = this.renderer.createElement('div');
-    this.renderer.addClass(skeletonElement, 'skeleton-loading');
-    this.renderer.addClass(skeletonElement, this.skeletonAnimation);
-    this.renderer.setStyle(skeletonElement, 'position', 'absolute');
-    this.renderer.setStyle(skeletonElement, 'top', '0');
-    this.renderer.setStyle(skeletonElement, 'left', '0');
-    this.renderer.setStyle(skeletonElement, 'right', '0');
-    this.renderer.setStyle(skeletonElement, 'bottom', '0');
-
-    this.renderer.appendChild(this.el.nativeElement, skeletonElement);
-  }
-
-  private hideSkeleton() {
-    const skeletonElement = this.el.nativeElement.querySelector('.skeleton-loading');
-    if (skeletonElement) {
-      this.renderer.removeChild(this.el.nativeElement, skeletonElement);
-    }
+    wrapper.style.position = 'relative';
+    wrapper.style.overflow = 'hidden';
+    wrapper.style.width = element.offsetWidth + 'px';
+    wrapper.style.height = element.offsetHeight + 'px';
+    wrapper.style.background = 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)';
+    wrapper.style.backgroundSize = '200% 100%';
+    wrapper.style.animation = 'skeleton-loading 2s infinite';
   }
 }

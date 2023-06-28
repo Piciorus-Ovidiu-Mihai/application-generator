@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { menus } from 'src/constants/menus';
 import { MenuItem } from 'src/shared/components/app-layout/app-layout/app-layout.component';
 
@@ -48,7 +48,6 @@ export class LayoutComponent  implements OnInit {
       url: '/auth/login'
     },
   ];
-  public constructor() { }
 
   public ngOnInit(): void {
     this.menuItems.next(this.removeObjectsByName(menus, this.initialMenus))
