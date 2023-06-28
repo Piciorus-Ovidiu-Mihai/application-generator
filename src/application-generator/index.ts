@@ -31,7 +31,7 @@ function createBackEnd(): void {
 }
 
 function createFrontEnd(type: string): void {
-  const command = `schematics .:${type}`;
+  const command = `schematics .:${type} --dry-run=false`;
 
   try {
     execSync(command, { stdio: "inherit" });
