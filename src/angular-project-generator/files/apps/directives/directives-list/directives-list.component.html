@@ -1,28 +1,27 @@
-<div class="directives-list-container">
-  <h1>Highlight directive</h1>
-  <div class="highlight-directives-list">
+<div class="directives-list-container" style="margin-bottom: 20px !important">
+  <div class="card">
+    <span class="card-title">Highlight Directive</span>
     <div appHighlight="green">
       This element will be highlighted in green when hovered over.
     </div>
-    <button appHighlight="green">Submit</button>
+    <div appHighlight="red">
+      This element will be highlighted in red when hovered over.
+    </div>
+    <button
+      style="border-radius: 10px; border: none; width: 70px"
+      appHighlight="green"
+    >
+      Submit
+    </button>
   </div>
 
-  <h1>Skeleton Loading directive</h1>
-  <div class="loading-directives-list">
-    <div
-      [appSkeletonLoading]="true"
-      skeletonColor="red"
-      skeletonAnimation="wave"
-      style="width: 100px; height: 100px"
-    ></div>
-  </div>
-
-  <h1>Are you sure directive</h1>
-  <div class="confirm-directives-list">
+  <div class="card">
+    <span class="card-title">Are you sure Directive</span>
     <ul>
       <li *ngFor="let item of items">
         {{ item }}
         <button
+          style="border-radius: 10px; border: none; width: 60px"
           appConfirmClick="Do you want to delete this item?"
           (click)="deleteItem(item)"
         >
@@ -31,14 +30,34 @@
       </li>
     </ul>
   </div>
+</div>
 
-  <h1>Min Max directive</h1>
-  <div class="confirm-directives-list">
-    <input
-      type="number"
-      name="myNumber"
-      [(ngModel)]="myNumberValue"
-      [appMinMax]="[10, 100]"
-    />
+<div class="container">
+  <span>Skeleton Loading</span>
+
+  <div [skeletonLoading]="true" style="width: 200px; height: 20px"></div>
+  <span [skeletonLoading]="true" style="width: 100px; height: 16px"></span>
+  <p
+    [skeletonLoading]="true"
+    style="width: 300px; height: 12px; margin-bottom: 20px"
+  ></p>
+  <div class="cards-list" style="margin-top: 20px !important">
+    <div class="card" *ngFor="let card of cards">
+      <div [skeletonLoading]="true" class="card-icon">
+        <mat-icon [skeletonLoading]="true"></mat-icon>
+      </div>
+      <div [skeletonLoading]="true" class="text-card">
+        <h2 [skeletonLoading]="true" class="color: white !important;">
+          {{ card.title }}
+        </h2>
+        <span [skeletonLoading]="true">{{ card.description }}</span>
+        <span [skeletonLoading]="true">{{ card.description }}</span>
+        <span [skeletonLoading]="true">{{ card.description }}</span>
+        <span [skeletonLoading]="true">{{ card.description }}</span>
+        <span style="width: 100px" [skeletonLoading]="true">{{
+          card.description
+        }}</span>
+      </div>
+    </div>
   </div>
 </div>

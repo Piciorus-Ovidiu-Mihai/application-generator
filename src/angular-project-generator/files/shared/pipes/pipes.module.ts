@@ -6,6 +6,8 @@ import { SanitizeImagePipe } from './sanitize-image.pipe';
 import { UppercasePipe } from './upper-case.pipe';
 import { SlicePipe } from './slice.pipe';
 import { CalcAgePipe } from './calc-age.pipe';
+import { CustomWeightPipe } from './custom-weight.pipe';
+import { SkeletonLoadingDirective } from '../directives/skeleton-loading.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { CalcAgePipe } from './calc-age.pipe';
     SanitizeImagePipe,
     SlicePipe,
     UppercasePipe,
-    CalcAgePipe
+    CalcAgePipe,
+    CustomWeightPipe,
   ],
   exports: [
     CurrencyPipe,
@@ -24,7 +27,8 @@ import { CalcAgePipe } from './calc-age.pipe';
     SanitizeImagePipe,
     SlicePipe,
     UppercasePipe,
-    CalcAgePipe
+    CalcAgePipe,
+    CustomWeightPipe,
   ],
 })
 export class SharedPipesModule {}

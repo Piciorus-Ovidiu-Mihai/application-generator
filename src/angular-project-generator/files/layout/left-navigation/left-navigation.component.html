@@ -1,7 +1,7 @@
 <div class="navbar-container">
   <mat-toolbar class="navbar">
     <button mat-icon-button (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
+      <mat-icon style="color: white;">menu</mat-icon>
     </button>
 
     <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
@@ -10,8 +10,8 @@
 
     <span class="navbar-spacer"></span>
     <button mat-button>
-      <mat-icon>person</mat-icon>
-      <span fxShow fxHide.xs> Username </span>
+      <mat-icon style="color: white">person</mat-icon>
+      <span fxShow fxHide.xs style="color: white"> Username </span>
     </button>
     <mat-menu
       #userMenu="matMenu"

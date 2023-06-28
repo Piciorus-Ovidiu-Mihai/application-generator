@@ -54,7 +54,7 @@ const routes: Routes = [
 			},
       { path: '', pathMatch: 'full', redirectTo: 'components' },
       { path: '**', redirectTo: '/components' }
-    ]
+    ],
   },
 ];
 

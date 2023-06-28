@@ -9,6 +9,8 @@ import { SkeletonLoadingDirective } from 'src/shared/directives/skeleton-loading
 import { ConfirmClickDirective } from 'src/shared/directives/are-you-sure.directive';
 import { FormsModule } from '@angular/forms';
 import { MinMaxDirective } from 'src/shared/directives/min-max.directive';
+import { HomeTemplateComponent } from 'src/shared/components/home-template/home-template.component';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -18,16 +20,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [DirectivesPageComponent, DirectivesListComponent],
+  declarations: [
+    DirectivesPageComponent,
+    DirectivesListComponent,
+    SkeletonLoadingDirective,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     HighlightDirective,
     ScrollSpyDirective,
-    SkeletonLoadingDirective,
     ConfirmClickDirective,
     MinMaxDirective,
-    FormsModule
+    FormsModule,
+    HomeTemplateComponent,
+    MatIconModule,
   ],
 })
 export class DirectivesModule {}

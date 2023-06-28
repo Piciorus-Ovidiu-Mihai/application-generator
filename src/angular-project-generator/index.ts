@@ -37,6 +37,7 @@ export function angularProjectGenerator(_options: any): Rule {
       addDirectivesPage(_options),
       addPipesPage(_options),
       overrideGlobalStyle(_options),
+      navigationBar(_options),
       addConstantForRoutes(_options),
       removeMenuItems(_options),
     ]);
@@ -445,7 +446,7 @@ export function addConstantForRoutes(_options: any): Rule {
   const name = _options.name;
 
   return (tree: Tree, _context: SchematicContext) => {
-    const moveToPath = `${name}/src/constants/constants.ts`;
+    const moveToPath = `${name}/src/constants/routes.ts`;
     let arrayOfRoutes: string[] = [];
 
     if (_options.sharedPipes === "No") {
@@ -580,5 +581,32 @@ function removeRouteFromFile(filePath: string, routeName: string): Rule {
     tree.overwrite(filePath, updatedContent);
 
     return tree;
+  };
+}
+
+export function navigationBar(_options: any): Rule {
+  const name = _options.name;
+
+  return (tree: Tree, _context: SchematicContext) => {
+    const moveToPath = `${name}/src/app/layout/main/`;
+    const sourceTemplate = url("./files/left-nav/");
+
+    if (_options.navigationBar === "header-nav") {
+      return tree;
+    } else {
+      const sourceParametrizeTemplate = apply(sourceTemplate, [
+        template({
+          ..._options,
+          ...strings,
+        }),
+        move(moveToPath),
+      ]);
+      tree = mergeWith(sourceParametrizeTemplate, MergeStrategy.Overwrite)(
+        tree,
+        _context
+      ) as Tree;
+
+      return tree;
+    }
   };
 }

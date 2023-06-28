@@ -1,3 +1,57 @@
-.pipes-list-container{
+.pipes-list-container {
+  height: 100%;
+  width: 100%;
 
+  .card {
+    justify-content: space-between;
+    width: 50%;
+    height: 25%;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--app-primary-contrast);
+    background-image: none;
+    box-shadow: 5px 5px 30px 0 var(--app-primary-contrast);
+    text-align: left;
+    color: var(--app-dark);
+    background-color: var(--app-secondary);
+    border-radius: 30px;
+    display: flex;
+    position: relative;
+    pointer-events: initial;
+    flex-direction: column;
+    padding: 20px;
+    gap: 5px;
+
+    table {
+      width: 100%;
+    }
+
+    .card-title {
+      color: white;
+      margin-bottom: 10px;
+      font-size: large;
+    }
+
+    .demo-section + .demo-section {
+      margin-top: 16px;
+    }
+
+    .example-section {
+      margin: 12px 0;
+    }
+
+    .example-margin {
+      margin: 0 12px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-top: 4px;
+    }
+
+    &:hover {
+      background-color: var(--app-primary);
+      cursor: pointer;
+    }
+  }
 }

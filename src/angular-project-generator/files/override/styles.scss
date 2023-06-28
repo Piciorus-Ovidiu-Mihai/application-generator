@@ -21,6 +21,16 @@ $angular-project-template-theme: mat.define-light-theme(
 
 @import './themes/variables.scss';
 
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+
 html:not(.hydrated) body {
   display: initial !important;
 }

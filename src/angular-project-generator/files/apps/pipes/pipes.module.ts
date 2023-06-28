@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PipesPageComponent } from './pipes-page/pipes-page.component';
 import { SharedPipesModule } from 'src/shared/pipes/pipes.module';
 import { PipesListComponent } from './pipes-list/pipes-list.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    SharedPipesModule
+    SharedPipesModule,
+    MatTableModule
   ]
 })
 export class PipesModule { }

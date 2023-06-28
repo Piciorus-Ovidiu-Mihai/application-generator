@@ -14,6 +14,11 @@
       "enum": ["firebase-base-service", "base-serivce", "both"],
       "x-prompt": "For the http requests what base service do you want to use?"
     },
+    "navigationBar": {
+      "type": "string",
+      "enum": ["left-nav", "header-nav"],
+      "x-prompt": "Do you want left navigation menu or header navigation menu?"
+    },
     "sharedComponents": {
       "type": "string",
       "enum": ["Yes", "No"],
@@ -58,6 +63,7 @@
   "required": [
     "name",
     "service",
+    "navigationBar",
     "sharedComponents",
     "sharedPipes",
     "sharedDirectives",

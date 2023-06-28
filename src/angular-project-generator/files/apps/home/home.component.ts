@@ -12,37 +12,37 @@ export class HomeComponent {
       title: 'Dashboard',
       icon: 'dashboard',
       description: 'Sample text. Click to select the Text Element.',
-      link: 'app/home'
+      link: 'app/home',
     },
     {
       title: 'Components',
       icon: 'pageview',
       description: 'Sample text. Click to select the Text Element.',
-      link: 'app/components'
+      link: 'app/components',
     },
     {
       title: 'Directives',
       icon: 'settings',
       description: 'Sample text. Click to select the Text Element.',
-      link: 'app/directives'
+      link: 'app/directives',
     },
     {
       title: 'Pipes',
       icon: 'line_weight',
       description: 'Sample text. Click to select the Text Element.',
-      link: 'app/pipes'
+      link: 'app/pipes',
     },
     {
       title: 'Ionic',
       icon: 'filter_frames',
       description: 'Sample text. Click to select the Text Element.',
-      link: 'app/ionic-components'
+      link: 'app/ionic-components',
     },
     {
       title: 'About us',
       icon: 'supervised_user_circle',
       description: 'Sample text. Click to select the Text Element.',
-      link: 'app/about-us'
+      link: 'app/about-us',
     },
   ];
 }

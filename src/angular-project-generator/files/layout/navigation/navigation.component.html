@@ -4,8 +4,8 @@
     <input [(ngModel)]="isChecked" type="checkbox" id="checkbox_toggle" />
     <label for="checkbox_toggle" class="hamburger">&#9776;</label>
     <div class="menu" id="menu">
-      <li id="hide" *ngFor="let item of headerMenuButtons;">
-        <a (click)="closeMenu()" href="{{item.ref}}">{{item.title}}</a>
+      <li id="hide" *ngFor="let item of headerMenuButtons">
+        <a (click)="closeMenu()" href="{{ item.ref }}">{{ item.title }}</a>
       </li>
     </div>
   </ul>
