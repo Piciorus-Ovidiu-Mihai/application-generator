@@ -8,10 +8,8 @@ import {
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { StackedListComponent } from '../stacked-list.component';
-import { PipesPageModule } from 'src/app/apps/pipes/pipes.module';
 
 @NgModule({
   declarations: [StackedListComponent, DisplayPropPipe, DisplayListIconPipe, DisplayAvatarPipe],

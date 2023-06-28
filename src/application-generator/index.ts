@@ -20,7 +20,7 @@ export function applicationGenerator(options: any): Rule {
 }
 
 function createBackEnd(): void {
-  const command = "schematics .:back-end-architecture";
+  const command = "schematics .:back-end-architecture --dry-run=false";
 
   try {
     execSync(command, { stdio: "inherit" });
