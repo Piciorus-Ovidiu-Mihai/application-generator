@@ -26,3 +26,4 @@ npm publish
 ```
 
 That's it!
+https://docs.google.com/document/d/10Ev45hk791cnBZISmctcoahqH_rNYb9FOvpDULdsm-c/edit?usp=sharing
