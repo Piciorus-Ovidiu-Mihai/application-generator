@@ -33,14 +33,14 @@ export function ionicProjectGenerator(_options: any): Rule {
       addCore(_options),
       addAboutUsPage(_options),
       addGlobalTheme(_options),
-      overrideAppStyle(_options),
-      overrideDependecies(_options),
       addDirectivesPage(_options),
       addPipesPage(_options),
       addIonicComponentsPage(_options),
       addComponentsPage(_options),
       addConstantForRoutes(_options),
       removeMenuItems(_options),
+      overrideAppStyle(_options),
+      overrideDependecies(_options),
     ]);
     return rule(tree, _context) as Rule;
   };
@@ -352,7 +352,7 @@ export function addGlobalTheme(_options: any): Rule {
       }),
       move(moveToPath),
     ]);
-    tree = mergeWith(sourceParametrizeTemplate)(tree, _context) as Tree;
+    tree = mergeWith(sourceParametrizeTemplate, MergeStrategy.Overwrite)(tree, _context) as Tree;
 
     return tree;
   };

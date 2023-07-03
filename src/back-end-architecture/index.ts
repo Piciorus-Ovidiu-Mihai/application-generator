@@ -20,7 +20,7 @@ export function backEndArchitecture(_options: any): Rule {
     }
 
     try {
-      const command = `git clone ${repositoryUrl} ../application/back-end/`;
+      const command = `git clone ${repositoryUrl} ../three-tier/back-end/`;
       execSync(command, { stdio: "ignore" });
       console.log("Repository cloned successfully");
     } catch (error) {
