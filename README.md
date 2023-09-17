@@ -1,6 +1,13 @@
 # 🛠️ Project Generator
   The Project Generator is a powerful and user-friendly application designed to empower developers by providing them with a competitive edge when starting new projects. With this application, developers can leverage predefined backend architecture templates and a wide range of frontend options that can be easily accessed through simple commands.
-  
+
+## 📷 Preview  
+
+## Architecture
+### Clean Architecture
+### Three Tier Architecture
+### Modules Architecture
+
 ## 🛡️ Key Features
 This innovative web application development solution streamlines the development process, ensuring high-quality code and project efficiency. It equips developers with the tools needed to respond to the dynamic web application development landscape.
 ### Efficiency 
@@ -34,3 +41,10 @@ Easily customize projects based on specific requirements, such as selecting desi
 * ⭐ Open PowerShell with Admin's Rights and write `Set-ExecutionPolicy RemoteSigned`
 * ⭐ For any project you want to run for generating the code use `schematics .:{name} --debug=false`
 * ⭐ After that you have to install angular material using `ng add @angular/material`
+
+## 🖥️ What I used ?
+* 💽 `Angular`
+* 💽 `Angular Schematics`
+* 🧮 `Typescript`
+* ⌨️ `HTML & CSS`
+* 💽 `.NET Core`
