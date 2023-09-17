@@ -21,7 +21,7 @@ Easily customize projects based on specific requirements, such as selecting desi
 ### Future-Ready
   Create web applications that are not only visually appealing but also robust and adaptable to future needs.
 
-## 🛠️ Prerequisites
+## 💽 Prerequisites
 * ⚙️ Install [Node.js](https://nodejs.org/en/download/)
 * ⚙️ Install Angular using `npm install -g @angular/cli`
 * ⚙️ Install Angular Schematics using `npm install -g @angular-devkit/schematics-cli`
