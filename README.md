@@ -20,3 +20,17 @@ Easily customize projects based on specific requirements, such as selecting desi
 
 ### Future-Ready
   Create web applications that are not only visually appealing but also robust and adaptable to future needs.
+
+## 🛠️ Prerequisites
+* ⚙️ Install [Node.js](https://nodejs.org/en/download/)
+* ⚙️ Install Angular using `npm install -g @angular/cli`
+* ⚙️ Install Angular Schematics using `npm install -g @angular-devkit/schematics-cli`
+* ⚙️ Instal .NET Core & Visual Studio
+
+## 🚀 Getting Started
+* ⭐ Clone the repository
+* ⭐ Open a terminal in the project path
+* ⭐ Run `npm run build`
+* ⭐ Open PowerShell with Admin's Rights and write `Set-ExecutionPolicy RemoteSigned`
+* ⭐ For any project you want to run for generating the code use `schematics .:{name} --debug=false`
+* ⭐ After that you have to install angular material using `ng add @angular/material`
