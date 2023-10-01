@@ -5,17 +5,17 @@
 Welcome to the preview section of the application! Here, you'll find a sneak peek into the various pages and features of the project. Take a quick tour through the application to get a glimpse of what's in store:
 * Authentication Pages: Explore the seamless and secure login and registration processes that ensure your data remains protected.
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-auth-module.png">
+  <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-auth-module.png">
 </p>
 
 * Dive into the interactive dashboard, where users can manage tasks, view statistics, and stay in control of their workflow.
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-ionic-dashboard.png">
+  <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-ionic-dashboard.png">
 </p>
 
 * About Us: Learn more about me and the vision behind this project. Get to know the individuals working on this innovative solution.
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-angular-aboutus.png">
+  <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-angular-aboutus.png">
 </p>
 I've included some screenshots to give you a visual overview. Feel free to explore further by cloning and running the application locally. For more details, please refer to the documentation.
 
@@ -24,13 +24,13 @@ I've included some screenshots to give you a visual overview. Feel free to explo
 In Clean Architecture, the application is divided into distinct layers, each with a specific responsibility and level of abstraction. These layers typically include the Domain layer, Application layer, Infrastructure layer, and Presentation layer. The Domain layer contains the core business logic and entities, while the Application layer defines use cases and orchestrates interactions between different components. The Infrastructure layer deals with external dependencies such as databases, APIs, or frameworks, while the Presentation layer handles the user interface and interactions.
 The primary advantage of Clean Architecture is its flexibility and maintainability. By applying clear separation of concerns and dependencies, it becomes easier to modify or replace certain components without affecting the entire system. Additionally, the emphasis on business rules and domain logic makes the codebase more testable, as tests can be conducted more effectively.\
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-clean-architecture.png">
+  <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-clean-architecture.png">
 </p>
 ### ⌨️ Three Tier Architecture
 The Three-Tier Architecture, also known as the Multi-Tier Architecture, is a widely used architectural model that divides the application into three distinct layers: the Presentation Layer, the Business Logic Layer, and the Data Persistence Layer. Each layer has its own set of responsibilities and interacts with the other layers through well-defined interfaces.
 The Presentation Layer is responsible for managing the user interface and user interactions. It includes components such as web pages, mobile interfaces, or APIs that allow users to interact with the system. The Business Logic Layer contains the business rules, workflows, and use cases of the application. It processes user input, performs necessary calculations, and coordinates interactions between different components. The Data Persistence Layer handles data storage and retrieval, interacting with databases or other data storage systems.
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-three-tier-architecture.png">
+  <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-three-tier-architecture.png">
 </p>
 ### ⌨️ Modules Architecture
 For both frontend applications, the same concepts of modular architecture were employed. Some of the advantages include:
@@ -40,7 +40,7 @@ For both frontend applications, the same concepts of modular architecture were e
 * Flexibility and Extensibility: Following a modular architecture makes the application more flexible and extensible. New features can be added by developing new modules or extending existing ones without impacting the entire codebase. This flexibility allows for easier customization and adaptability to changing business requirements or user needs.
 * Code Organization and Readability: Modular architecture enforces a structured organization of the codebase. Each module focuses on a specific aspect of the application, making it easier to locate and understand the relevant code. This improves code readability, reduces complexity, and enhances overall maintainability.
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pages-architecture.png">
+  <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pages-architecture.png">
 </p>
 ## 🛡️ Key Features
 This innovative web application development solution streamlines the development process, ensuring high-quality code and project efficiency. It equips developers with the tools needed to respond to the dynamic web application development landscape.
