@@ -2,6 +2,9 @@
   The Project Generator is a powerful and user-friendly application designed to empower developers by providing them with a competitive edge when starting new projects. With this application, developers can leverage predefined backend architecture templates and a wide range of frontend options that can be easily accessed through simple commands.
 
 ## 📷 Preview  
+![alt text](https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-auth-module.png) 
+![alt text](https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-ionic-dashboard.png) 
+![alt text](https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-angular-aboutus.png) 
 
 ## 💻 Architecture
 ### ⌨️ Clean Architecture
