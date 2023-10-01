@@ -2,15 +2,20 @@
   The Project Generator is a powerful and user-friendly application designed to empower developers by providing them with a competitive edge when starting new projects. With this application, developers can leverage predefined backend architecture templates and a wide range of frontend options that can be easily accessed through simple commands.
 
 ## 📷 Preview  
+Welcome to the preview section of the application! Here, you'll find a sneak peek into the various pages and features of the project. Take a quick tour through the application to get a glimpse of what's in store:
+* Authentication Pages: Explore the seamless and secure login and registration processes that ensure your data remains protected.
 <p align="center">
   <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-auth-module.png">
 </p>
+* Dashboard: Dive into our interactive dashboard, where you can manage your tasks, view statistics, and stay in control of your workflow.
 <p align="center">
   <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-ionic-dashboard.png">
 </p>
+* About Us: Learn more about our team and the vision behind this project. Get to know the people working tirelessly to bring you this innovative solution.
 <p align="center">
   <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-angular-aboutus.png">
 </p>
+I've included some screenshots to give you a visual overview. Feel free to explore further by cloning and running the application locally. For more details, please refer to the documentation.
 
 ## 💻 Architecture
 ### ⌨️ Clean Architecture
