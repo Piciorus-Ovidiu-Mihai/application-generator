@@ -7,11 +7,13 @@ Welcome to the preview section of the application! Here, you'll find a sneak pee
 <p align="center">
   <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-auth-module.png">
 </p>
-* Dashboard: Dive into our interactive dashboard, where you can manage your tasks, view statistics, and stay in control of your workflow.
+
+* Dive into the interactive dashboard, where users can manage tasks, view statistics, and stay in control of their workflow.
 <p align="center">
   <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-ionic-dashboard.png">
 </p>
-* About Us: Learn more about our team and the vision behind this project. Get to know the people working tirelessly to bring you this innovative solution.
+
+* About Us: Learn more about me and the vision behind this project. Get to know the individuals working on this innovative solution.
 <p align="center">
   <img width="460" height="300" src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-angular-aboutus.png">
 </p>
