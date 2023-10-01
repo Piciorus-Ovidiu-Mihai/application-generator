@@ -26,12 +26,14 @@ The primary advantage of Clean Architecture is its flexibility and maintainabili
 <p align="center">
   <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-clean-architecture.png">
 </p>
+
 ### ⌨️ Three Tier Architecture
 The Three-Tier Architecture, also known as the Multi-Tier Architecture, is a widely used architectural model that divides the application into three distinct layers: the Presentation Layer, the Business Logic Layer, and the Data Persistence Layer. Each layer has its own set of responsibilities and interacts with the other layers through well-defined interfaces.
 The Presentation Layer is responsible for managing the user interface and user interactions. It includes components such as web pages, mobile interfaces, or APIs that allow users to interact with the system. The Business Logic Layer contains the business rules, workflows, and use cases of the application. It processes user input, performs necessary calculations, and coordinates interactions between different components. The Data Persistence Layer handles data storage and retrieval, interacting with databases or other data storage systems.
 <p align="center">
   <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-three-tier-architecture.png">
 </p>
+
 ### ⌨️ Modules Architecture
 For both frontend applications, the same concepts of modular architecture were employed. Some of the advantages include:
 * Code Reusability: Modular architecture promotes code reusability by dividing the application into smaller, self-contained modules. These modules can be developed independently and then reused in different parts of the application. This approach eliminates the need for duplicating code and enhances development efficiency.
@@ -42,6 +44,7 @@ For both frontend applications, the same concepts of modular architecture were e
 <p align="center">
   <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pages-architecture.png">
 </p>
+
 ## 🛡️ Key Features
 This innovative web application development solution streamlines the development process, ensuring high-quality code and project efficiency. It equips developers with the tools needed to respond to the dynamic web application development landscape.
 * Efficiency: Save time and valuable resources by eliminating the need to build everything from scratch, allowing developers to focus on the unique aspects of their application.
