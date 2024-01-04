@@ -22,7 +22,7 @@ I've included some screenshots to give you a visual overview. Feel free to explo
 ## 💻 Architecture
 ### ⌨️ Clean Architecture
 In Clean Architecture, the application is divided into distinct layers, each with a specific responsibility and level of abstraction. These layers typically include the Domain layer, Application layer, Infrastructure layer, and Presentation layer. The Domain layer contains the core business logic and entities, while the Application layer defines use cases and orchestrates interactions between different components. The Infrastructure layer deals with external dependencies such as databases, APIs, or frameworks, while the Presentation layer handles the user interface and interactions.
-The primary advantage of Clean Architecture is its flexibility and maintainability. By applying clear separation of concerns and dependencies, it becomes easier to modify or replace certain components without affecting the entire system. Additionally, the emphasis on business rules and domain logic makes the codebase more testable, as tests can be conducted more effectively.\
+The primary advantage of Clean Architecture is its flexibility and maintainability. By applying clear separation of concerns and dependencies, it becomes easier to modify or replace certain components without affecting the entire system. Additionally, the emphasis on business rules and domain logic makes the codebase more testable, as tests can be conducted more effectively.
 <p align="center">
   <img src="https://github.com/Piciorus-Ovidiu-Mihai/Photos/blob/master/pg-clean-architecture.png">
 </p>
